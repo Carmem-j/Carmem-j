@@ -57,21 +57,14 @@
         }
       }
       .brand-logo {
-        height: 28px;
-        width: auto;
-        max-width: 120px;
-        object-fit: contain;
-        filter: grayscale(100%);
-        opacity: 0.4;
-        transition: all 0.4s ease;
+        /* base logo styles using Tailwind utilities via @apply */
+        @apply h-7 w-auto max-w-[120px] object-contain filter grayscale opacity-40 transition-all;
       }
       .brand-logo:hover {
-        filter: grayscale(0%);
-        opacity: 1;
-        transform: scale(1.05);
+        @apply filter grayscale-0 opacity-100 transform scale-105;
       }
 
-      /* Case typography (explicit CSS replacing Tailwind `@apply`) */
+      /* Case typography using Tailwind @apply (CDN-only) */
       .case-text h2 {
         @apply text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight;
       }
@@ -94,6 +87,7 @@
       .brand-logo--h44 {
         @apply h-11; /* 44px */
       }
+      /* Note: specific brand logo heights may still be applied via utility classes in markup (h-9 / h-11) */
     </style>
   </head>
   <body class="antialiased">
