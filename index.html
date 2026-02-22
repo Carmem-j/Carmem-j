@@ -1,369 +1,157 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carmem Ferreira | Senior Product Designer</title>
-    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --bg-primary: #ffffff;
-            --text-primary: #18181b;
-            --accent: #2563eb;
-        }
+      :root {
+        --bg-primary: #ffffff;
+        --text-primary: #18181b;
+        --accent: #2563eb;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-        }
+      /* Acessibilidade Restaurada */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--accent);
+        color: white;
+        padding: 8px;
+        z-index: 100;
+        transition: top 0.3s;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
 
-        /* Acessibilidade: Skip Link */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--accent);
-            color: white;
-            padding: 8px;
-            z-index: 100;
-            transition: top 0.3s;
+      /* Estilos do Carrossel Restaurados */
+      .carousel-track {
+        display: flex;
+        width: max-content;
+        animation: scroll 40s linear infinite;
+        align-items: center;
+      }
+      .carousel-track:hover {
+        animation-play-state: paused;
+      }
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
         }
-        .skip-link:focus {
-            top: 0;
+        100% {
+          transform: translateX(-50%);
         }
+      }
+      .brand-logo {
+        height: 28px;
+        width: auto;
+        max-width: 120px;
+        object-fit: contain;
+        filter: grayscale(100%);
+        opacity: 0.4;
+        transition: all 0.4s ease;
+      }
+      .brand-logo:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+        transform: scale(1.05);
+      }
 
-        /* Animação do Carrossel de Marcas */
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .carousel-track {
-            display: flex;
-            width: max-content;
-            animation: scroll 40s linear infinite;
-            align-items: center;
-        }
-
-        .carousel-track:hover {
-            animation-play-state: paused;
-        }
-
-        .brand-logo {
-            height: 28px;
-            width: auto;
-            max-width: 120px;
-            object-fit: contain;
-            filter: grayscale(100%);
-            opacity: 0.4;
-            transition: all 0.4s ease;
-        }
-
-        .brand-logo:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.05);
-        }
-
-        /* Navegação SPA */
-        .page-content {
-            display: none;
-        }
-
-        .page-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Estilização Prose para Cases */
-        .case-text h2 { @apply text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight; }
-        .case-text h3 { @apply text-xl font-bold text-zinc-900 mt-8 mb-4; }
-        .case-text p { @apply text-zinc-600 leading-relaxed mb-6; }
-        .case-text ul { @apply list-disc pl-6 mb-8 space-y-2 text-zinc-600; }
-        .case-text blockquote { @apply border-l-4 border-blue-600 pl-6 py-2 italic bg-zinc-50 rounded-r-lg mb-8 text-zinc-700; }
-
-        .image-box { @apply w-full bg-zinc-100 rounded-2xl overflow-hidden my-6 border border-zinc-100 flex items-center justify-center text-zinc-400 italic text-sm; }
-        .image-label { @apply text-center text-sm text-zinc-400 italic mb-10 block; }
-
-        @media (prefers-reduced-motion: reduce) {
-            .carousel-track { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; gap: 2rem; }
-            .page-content.active { animation: none; }
-        }
+      /* Tipografia Original dos Cases Restaurada */
+      .case-text h2 {
+        @apply text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight;
+      }
+      .case-text h3 {
+        @apply text-xl font-bold text-zinc-900 mt-8 mb-4;
+      }
+      .case-text p {
+        @apply text-zinc-600 leading-relaxed mb-6;
+      }
+      .case-text ul {
+        @apply list-disc pl-6 mb-8 space-y-2 text-zinc-600;
+      }
+      .case-text blockquote {
+        @apply border-l-4 border-blue-600 pl-6 py-2 italic bg-zinc-50 rounded-r-lg mb-8 text-zinc-700;
+      }
     </style>
-</head>
-<body class="antialiased">
+  </head>
+  <body class="antialiased">
+    <a href="#main-content" class="skip-link"
+      >Pular para o conteúdo principal</a
+    >
 
-    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    <div
+      hx-get="components/header.html"
+      hx-trigger="load"
+      hx-swap="outerHTML"
+    ></div>
 
-    <!-- Menu Superior -->
-    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-zinc-100 z-50">
-        <nav class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between" aria-label="Navegação Principal">
-            <button onclick="showPage('home')" class="text-xl font-bold tracking-tight uppercase">CARMEM FERREIRA.</button>
-            <ul class="hidden md:flex space-x-8 text-sm font-medium text-zinc-500">
-                <li><button onclick="showPage('home')" class="hover:text-black transition-colors">Início</button></li>
-                <li><a href="#sobre" onclick="if(currentPage !== 'home') showPage('home')" class="hover:text-black transition-colors">Sobre</a></li>
-                <li><a href="#projetos" onclick="if(currentPage !== 'home') showPage('home')" class="hover:text-black transition-colors">Projetos</a></li>
-                <li><a href="#contato" class="hover:text-black transition-colors">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+    <main id="main-content">
+      <div
+        hx-get="components/hero.html"
+        hx-trigger="load"
+        hx-target="#main-content"
+        hx-swap="innerHTML"
+      ></div>
+    </main>
 
-    <!-- PÁGINA INICIAL -->
-    <div id="home" class="page-content active">
-        <main id="main-content" class="pt-32">
-            
-            <!-- Hero Section -->
-            <section id="sobre" class="max-w-6xl mx-auto px-6 py-16 md:py-28">
-                <div class="grid md:grid-cols-12 gap-16 items-center">
-                    <div class="md:col-span-7">
-                        <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.2em] mb-4 block text-center md:text-left">PRODUCT DESIGNER</span>
-                        <h1 class="text-4xl md:text-6xl font-bold leading-[1.1] mb-8 text-center md:text-left">
-                            Arquitetando soluções para sistemas complexos e missões críticas.
-                        </h1>
-                        <p class="text-xl text-zinc-500 mb-10 leading-relaxed max-w-2xl text-center md:text-left">
-                            Especialista em visualização de dados e curadora de acessibilidade, dedico minha carreira a simplificar o complexo. Meu trabalho na INTELIE com setores de alta precisão me ensinou que clareza visual é uma vantagem competitiva. Atuo como mentora e facilitadora, defendendo que um produto só é verdadeiramente bem desenhado quando é acessível a todos, sem exceção.
-                        </p>
-                        <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                            <a href="#projetos" class="bg-zinc-900 text-white px-8 py-4 rounded-full font-medium hover:bg-zinc-800 transition-all">Ver Projetos Selecionados</a>
-                            <a href="#contato" class="border border-zinc-200 text-zinc-900 px-8 py-4 rounded-full font-medium hover:bg-zinc-50 transition-all">Contato</a>
-                        </div>
-                    </div>
-                    <div class="md:col-span-5">
-                        <div class="aspect-[4/5] bg-zinc-100 rounded-3xl overflow-hidden relative shadow-inner">
-                            <div class="absolute inset-0 flex items-center justify-center text-zinc-400 italic text-sm text-center px-6">
-                                [Foto Profissional de Carmem Ferreira]
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Carrossel de Marcas -->
-            <section class="py-24 border-y border-zinc-100 bg-zinc-50/30 overflow-hidden">
-                <div class="max-w-6xl mx-auto px-6 mb-12">
-                    <h2 class="text-xs font-bold text-zinc-400 uppercase tracking-[0.3em] text-center">Impacto gerado em grandes players do mercado</h2>
-                </div>
-                <div class="relative w-full">
-                    <div class="carousel-track space-x-16 md:space-x-24 px-12">
-                        <div class="flex items-center space-x-16 md:space-x-24">
-                            <img src="images/logo-petrobras-2048.png" alt="Petrobras" class="brand-logo" style="height: 38px;">
-                            <img src="images/315-3158664_bp-logo-british-petroleum-logo.png" alt="British Petroleum" class="brand-logo">
-                            <img src="images/Exxon-Mobil-Corporation-Logo.png" alt="Exxon Mobil" class="brand-logo">
-                            <img src="images/Pioneer-Logo.png" alt="Pioneer" class="brand-logo" style="height: 44px;">
-                            <img src="images/ocyan__logo_8848.png" alt="Ocyan" class="brand-logo">
-                            <img src="images/NESR_BIG.png" alt="NESR" class="brand-logo">
-                            <img src="images/PUMP_BIG.png" alt="ProPetro" class="brand-logo">
-                            <img src="images/novo-logo-mag-seguros-blue.png" alt="MAG Seguros" class="brand-logo">
-                            <img src="images/logo-irb-brasil-512.png" alt="IRB Brasil RE" class="brand-logo" style="height: 44px;">
-                            <span class="text-lg font-bold text-zinc-300 uppercase tracking-widest">Equinor</span>
-                            <span class="text-lg font-bold text-zinc-300 uppercase tracking-widest">Fervo</span>
-                        </div>
-                        <div class="flex items-center space-x-16 md:space-x-24">
-                            <img src="images/logo-petrobras-2048.png" alt="Petrobras" class="brand-logo" style="height: 38px;">
-                            <img src="images/315-3158664_bp-logo-british-petroleum-logo.png" alt="British Petroleum" class="brand-logo">
-                            <img src="images/Exxon-Mobil-Corporation-Logo.png" alt="Exxon Mobil" class="brand-logo">
-                            <img src="images/Pioneer-Logo.png" alt="Pioneer" class="brand-logo" style="height: 44px;">
-                            <img src="images/ocyan__logo_8848.png" alt="Ocyan" class="brand-logo">
-                            <img src="images/NESR_BIG.png" alt="NESR" class="brand-logo">
-                            <img src="images/PUMP_BIG.png" alt="ProPetro" class="brand-logo">
-                            <img src="images/novo-logo-mag-seguros-blue.png" alt="MAG Seguros" class="brand-logo">
-                            <img src="images/logo-irb-brasil-512.png" alt="IRB Brasil RE" class="brand-logo" style="height: 44px;">
-                            <span class="text-lg font-bold text-zinc-300 uppercase tracking-widest">Equinor</span>
-                            <span class="text-lg font-bold text-zinc-300 uppercase tracking-widest">Fervo</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Projetos Home -->
-            <section id="projetos" class="max-w-6xl mx-auto px-6 py-32">
-                <div class="mb-24 text-center lg:text-left">
-                    <h2 class="text-4xl font-bold mb-6 text-zinc-900">Trabalhos Selecionados</h2>
-                    <p class="text-zinc-500 text-lg max-w-2xl lg:mx-0 mx-auto text-center lg:text-left">Projetos estratégicos focados em escalabilidade e ROI de design.</p>
-                </div>
-
-                <div class="space-y-40">
-                    <!-- Preview Case 1 -->
-                    <article class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-                        <div class="space-y-6">
-                            <span class="text-blue-600 font-bold text-xs uppercase tracking-widest block">VISUALIZAÇÃO DE DADOS | INTELIE</span>
-                            <h3 class="text-3xl font-bold leading-tight text-zinc-900">Data Navigation: Melhorias de navegação em dashboards dinâmicos</h3>
-                            <p class="text-zinc-600 text-lg leading-relaxed">Navegação intuitiva de dados macro e micro em ambientes operacionais complexos.</p>
-                            <button onclick="showPage('case-1')" class="inline-flex items-center gap-2 bg-zinc-900 text-white px-7 py-3.5 rounded-full font-bold hover:bg-zinc-800 transition-all">
-                                Ler case completo na próxima página
-                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
-                            </button>
-                        </div>
-                        <div class="aspect-[16/10] bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group">
-                            <img src="images/photo-1526628953301-3e589a6a8b74.jfif" alt="Dashboard operacional Intelie" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        </div>
-                    </article>
-
-                    <!-- Preview Case 2 -->
-                    <article class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-                        <div class="space-y-6">
-                            <span class="text-blue-600 font-bold text-xs uppercase tracking-widest block">VISUALIZAÇÃO DE DADOS | INTELIE</span>
-                            <h3 class="text-3xl font-bold leading-tight text-zinc-900 uppercase">Escalando ROI através de Design No-Code</h3>
-                            <p class="text-zinc-600 text-lg leading-relaxed">Autonomia para o utilizador final e redução drástica de custos técnicos de manutenção.</p>
-                            <button onclick="showPage('case-2')" class="inline-flex items-center gap-2 bg-zinc-900 text-white px-7 py-3.5 rounded-full font-bold hover:bg-zinc-800 transition-all">
-                                Ler case completo na próxima página
-                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
-                            </button>
-                        </div>
-                        <div class="aspect-[16/10] bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group">
-                            <img src="images/82061.png" alt="Conceito de simplificação No-Code" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        </div>
-                    </article>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- PÁGINA CASE 1 -->
-    <div id="case-1" class="page-content">
-        <article class="pt-32 pb-24">
-            <div class="max-w-4xl mx-auto px-6">
-                <button onclick="showPage('home')" class="flex items-center gap-2 text-zinc-500 hover:text-black mb-12 transition-colors">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
-                    Voltar para o início
-                </button>
-                
-                <header class="mb-16">
-                    <span class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-4 block">VISUALIZAÇÃO DE DADOS | INTELIE</span>
-                    <h1 class="text-4xl md:text-5xl font-bold mb-8 leading-tight text-zinc-900 italic">Data Navigation: Conjunto de melhorias de navegação de dados em dashboards dinâmicos</h1>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-zinc-100 text-sm">
-                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Papel</p><p class="font-semibold">Designer de Produto</p></div>
-                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Ano</p><p class="font-semibold">2023</p></div>
-                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Duração</p><p class="font-semibold">~8 meses</p></div>
-                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Equipe</p><p class="font-semibold text-zinc-900">Lead + 4 Devs</p></div>
-                    </div>
-                </header>
-
-                <div class="case-text prose prose-zinc prose-lg max-w-none">
-                    <p class="italic text-sm text-zinc-400 mb-10">Este é um projeto interno da INTELIE, com restrições de conteúdo para preservação de dados sensíveis.</p>
-                    
-                    <section>
-                        <h2>Responsabilidades</h2>
-                        <ul>
-                            <li>Estabelecimento de processo de design</li>
-                            <li>Processo de discovery e definição</li>
-                            <li>Entrevista semiestruturada</li>
-                            <li>Estratégia de priorização</li>
-                            <li>Apresentação executiva e Documentação de Handoff</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Visão Geral</h2>
-                        <p>O utilizador de O&G necessita consumir, no mesmo dashboard, informações gerais sobre a vida útil de um poço e eventos menores de interesse dentro de uma visão "macro". O Data Navigation foi projetado para uma interação fluida em widgets dinâmicos, reduzindo o tempo de espera e aumentando a eficiência operacional.</p>
-                    </section>
-
-                    <section>
-                        <h2>Entendimento do Problema</h2>
-                        <blockquote>“As pessoas que utilizam os dashboards precisam navegar de forma fluida, rápida e assertiva pelos gráficos, porque atualmente têm dificuldade para explorar os dados e o tempo de carregamento é longo."</blockquote>
-                    </section>
-
-                    <section class="bg-zinc-900 text-white p-10 rounded-3xl shadow-xl mt-12">
-                        <h2>Resultados</h2>
-                        <p class="text-zinc-300 leading-relaxed italic">Melhoria significativa de performance através do pré-carregamento de dados, eliminando esperas de requisição e permitindo renderização instantânea nas interações de zoom.</p>
-                    </section>
-                </div>
-            </div>
-        </article>
-    </div>
-
-    <!-- PÁGINA CASE 2 -->
-    <div id="case-2" class="page-content">
-        <article class="pt-32 pb-24">
-            <div class="max-w-4xl mx-auto px-6">
-                <button onclick="showPage('home')" class="flex items-center gap-2 text-zinc-500 hover:text-black mb-12 transition-colors">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
-                    Voltar para o início
-                </button>
-                
-                <header class="mb-16">
-                    <span class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-4 block">VISUALIZAÇÃO DE DADOS | INTELIE</span>
-                    <h1 class="text-4xl md:text-5xl font-bold mb-8 leading-tight text-zinc-900 uppercase">Otimização de Visualização de Dados: Escalando ROI através de Design No-Code</h1>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-zinc-100 text-sm">
-                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Papel</p><p class="font-semibold">Designer de Produto</p></div>
-                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Ano</p><p class="font-semibold">2025/2026</p></div>
-                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Status</p><p class="font-semibold">Em andamento</p></div>
-                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Foco</p><p class="font-semibold">ROI No-Code</p></div>
-                    </div>
-                </header>
-
-                <div class="case-text prose prose-zinc prose-lg max-w-none">
-                    <!-- Novo conteúdo Iterativo começa aqui -->
-                    <section class="case-text">
-                        <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight">1. Contexto Estratégico</h2>
-                        <h3>Problema identificado</h3>
-                        <p>Um widget de gráficos temporais que estava sendo usado nos ambientes de clientes de fracking, que foi originalmente criado para um projeto de outro domínio e “reaproveitado” nesse contexto, possuía sérios problemas de manutenção pela forma como foi desenvolvido e não se comunicava com os demais widgets da plataforma, tendo em vista que se tratava de uma estrutura modular. Como resultado, era um widget que acumulava features que já existiam no dashboard, mas não acompanhava outros widgets em interações conjuntas, como PTZ (pan, tilt, zoom).</p>
-                    </section>
-                </div>
-            </div>
-        </article>
-    </div>
-
-    <!-- Contacto / CTA -->
-    <section id="contato" class="bg-zinc-900 text-white py-32 px-6 text-center">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 italic uppercase tracking-wider">Vamos construir o futuro complexo juntos?</h2>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-10">
-                <a href="mailto:carmemjeovana@gmail.com" class="text-lg hover:text-blue-400 transition-all border-b border-white/20 hover:border-blue-400 pb-1">carmemjeovana@gmail.com</a>
-                <a href="https://www.linkedin.com/in/carmem-santos" target="_blank" class="text-lg hover:text-blue-400 transition-all border-b border-white/20 hover:border-blue-400 pb-1 text-zinc-400">Carmem Ferreira | LinkedIn</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Rodapé -->
-    <footer class="bg-zinc-900 text-zinc-600 py-16 px-6 border-t border-zinc-800 text-center md:text-left">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-left">
-                <p class="text-xs font-bold text-white uppercase tracking-widest">Carmem Ferreira • Senior Product Designer</p>
-                <p class="text-[10px] uppercase opacity-50 font-medium">Design e Código focado em WCAG 2.1 • 2024</p>
-            </div>
-            <div class="flex space-x-6">
-                <a href="mailto:carmemjeovana@gmail.com" class="hover:text-white transition-colors text-xs">E-mail</a>
-                <a href="https://www.linkedin.com/in/carmem-santos" target="_blank" class="hover:text-white transition-colors text-xs">LinkedIn</a>
-            </div>
-        </div>
-    </footer>
+    <div
+      hx-get="components/brands.html"
+      hx-trigger="load"
+      hx-swap="outerHTML"
+    ></div>
+    <div
+      hx-get="components/footer.html"
+      hx-trigger="load"
+      hx-swap="outerHTML"
+    ></div>
 
     <script>
-        let currentPage = 'home';
+      let translations = {};
+      let currentLang = 'pt';
 
-        function showPage(pageId) {
-            // Esconder todas as secções
-            document.querySelectorAll('.page-content').forEach(page => {
-                page.classList.remove('active');
-            });
+      async function initI18n() {
+        const res = await fetch('translations.json');
+        translations = await res.json();
+        translatePage();
+      }
 
-            // Mostrar a secção alvo
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                currentPage = pageId;
-                window.scrollTo(0, 0); // Resetar scroll ao trocar de página
-            }
-        }
-
-        // Suporte para tecla Escape voltar para Home
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && currentPage !== 'home') {
-                showPage('home');
-            }
+      function translatePage() {
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          if (translations[currentLang][key]) {
+            // Usa innerHTML para permitir renderizar o blockquote e tags que possam vir da tradução
+            el.innerHTML = translations[currentLang][key];
+          }
         });
+        document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
+      }
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        translatePage();
+      }
+
+      document.body.addEventListener('htmx:afterOnLoad', () => {
+        translatePage();
+        window.scrollTo(0, 0); // Scroll ao topo ao trocar de Case
+      });
+
+      window.onload = initI18n;
     </script>
-</body>
+  </body>
 </html>
