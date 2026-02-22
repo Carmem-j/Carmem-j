@@ -1,0 +1,67 @@
+<header
+  class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-zinc-100 z-50"
+>
+  <nav
+    class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between"
+    aria-label="Navegação Principal"
+  >
+    <button
+      hx-get="components/hero.html"
+      hx-target="#main-content"
+      class="text-xl font-bold tracking-tight uppercase"
+    >
+      CARMEM FERREIRA.
+    </button>
+    <ul
+      class="hidden md:flex space-x-8 text-sm font-medium text-zinc-500 items-center"
+    >
+      <li>
+        <button
+          hx-get="components/hero.html"
+          hx-target="#main-content"
+          class="hover:text-black transition-colors"
+          data-i18n="nav-home"
+        ></button>
+      </li>
+      <li>
+        <button
+          hx-get="components/hero.html"
+          hx-target="#main-content"
+          class="hover:text-black transition-colors"
+          data-i18n="nav-about"
+        ></button>
+      </li>
+      <li>
+        <button
+          hx-get="components/projects.html"
+          hx-target="#main-content"
+          class="hover:text-black transition-colors"
+          data-i18n="nav-projects"
+        ></button>
+      </li>
+      <li>
+        <a
+          href="#contato"
+          class="hover:text-black transition-colors"
+          data-i18n="nav-contact"
+        ></a>
+      </li>
+      <li>
+        <div class="flex gap-2 bg-zinc-100 p-1 rounded-full">
+          <button
+            onclick="setLanguage('pt')"
+            class="px-2 py-1 rounded-full hover:bg-white text-[10px] font-bold text-zinc-900 transition-all"
+          >
+            PT
+          </button>
+          <button
+            onclick="setLanguage('en')"
+            class="px-2 py-1 rounded-full hover:bg-white text-[10px] font-bold text-zinc-900 transition-all"
+          >
+            EN
+          </button>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
