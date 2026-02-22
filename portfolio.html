@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carmem Ferreira | Senior Product Designer</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --text-primary: #18181b;
+            --accent: #2563eb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        /* Acessibilidade: Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Animação do Carrossel de Marcas */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .carousel-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+            align-items: center;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        .brand-logo {
+            height: 28px;
+            width: auto;
+            max-width: 120px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.4;
+            transition: all 0.4s ease;
+        }
+
+        .brand-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Navegação SPA */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilização Prose para Cases */
+        .case-text h2 { @apply text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight; }
+        .case-text h3 { @apply text-xl font-bold text-zinc-900 mt-8 mb-4; }
+        .case-text p { @apply text-zinc-600 leading-relaxed mb-6; }
+        .case-text ul { @apply list-disc pl-6 mb-8 space-y-2 text-zinc-600; }
+        .case-text blockquote { @apply border-l-4 border-blue-600 pl-6 py-2 italic bg-zinc-50 rounded-r-lg mb-8 text-zinc-700; }
+
+        .image-box { @apply w-full bg-zinc-100 rounded-2xl overflow-hidden my-6 border border-zinc-100 flex items-center justify-center text-zinc-400 italic text-sm; }
+        .image-label { @apply text-center text-sm text-zinc-400 italic mb-10 block; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .carousel-track { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; gap: 2rem; }
+            .page-content.active { animation: none; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- Menu Superior -->
+    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-zinc-100 z-50">
+        <nav class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between" aria-label="Navegação Principal">
+            <button onclick="showPage('home')" class="text-xl font-bold tracking-tight uppercase">CARMEM FERREIRA.</button>
+            <ul class="hidden md:flex space-x-8 text-sm font-medium text-zinc-500">
+                <li><button onclick="showPage('home')" class="hover:text-black transition-colors">Início</button></li>
+                <li><a href="#sobre" onclick="if(currentPage !== 'home') showPage('home')" class="hover:text-black transition-colors">Sobre</a></li>
+                <li><a href="#projetos" onclick="if(currentPage !== 'home') showPage('home')" class="hover:text-black transition-colors">Projetos</a></li>
+                <li><a href="#contato" class="hover:text-black transition-colors">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- PÁGINA INICIAL -->
+    <div id="home" class="page-content active">
+        <main id="main-content" class="pt-32">
+            
+            <!-- Hero Section -->
+            <section id="sobre" class="max-w-6xl mx-auto px-6 py-16 md:py-28">
+                <div class="grid md:grid-cols-12 gap-16 items-center">
+                    <div class="md:col-span-7">
+                        <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.2em] mb-4 block text-center md:text-left">Product Designer Senior</span>
+                        <h1 class="text-4xl md:text-6xl font-bold leading-[1.1] mb-8 text-center md:text-left">
+                            Arquitetando soluções para sistemas complexos e missões críticas.
+                        </h1>
+                        <p class="text-xl text-zinc-500 mb-10 leading-relaxed max-w-2xl text-center md:text-left">
+                            Especialista em visualização de dados e inteligência operacional para os sectores de Energia, Óleo e Gás e Seguros. Atualmente liderando processos de design na INTELIE.
+                        </p>
+                        <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                            <a href="#projetos" class="bg-zinc-900 text-white px-8 py-4 rounded-full font-medium hover:bg-zinc-800 transition-all">Ver Projetos Selecionados</a>
+                            <a href="#contato" class="border border-zinc-200 text-zinc-900 px-8 py-4 rounded-full font-medium hover:bg-zinc-50 transition-all">Contacto</a>
+                        </div>
+                    </div>
+                    <div class="md:col-span-5">
+                        <div class="aspect-[4/5] bg-zinc-100 rounded-3xl overflow-hidden relative shadow-inner">
+                            <div class="absolute inset-0 flex items-center justify-center text-zinc-400 italic text-sm text-center px-6">
+                                [Foto de Carmem Ferreira]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Carrossel de Marcas -->
+            <section class="py-24 border-y border-zinc-100 bg-zinc-50/30 overflow-hidden">
+                <div class="max-w-6xl mx-auto px-6 mb-12">
+                    <h2 class="text-xs font-bold text-zinc-400 uppercase tracking-[0.3em] text-center">Impacto gerado em grandes players do mercado</h2>
+                </div>
+                <div class="relative w-full">
+                    <div class="carousel-track space-x-16 md:space-x-24 px-12">
+                        <div class="flex items-center space-x-16 md:space-x-24">
+                            <img src="logo-petrobras-2048.png" alt="Petrobras" class="brand-logo">
+                            <img src="315-3158664_bp-logo-british-petroleum-logo.png" alt="British Petroleum" class="brand-logo">
+                            <img src="Exxon-Mobil-Corporation-Logo.png" alt="Exxon Mobil" class="brand-logo">
+                            <img src="Pioneer-Logo.png" alt="Pioneer" class="brand-logo">
+                            <img src="ocyan__logo_8848.png" alt="Ocyan" class="brand-logo">
+                            <img src="NESR_BIG.png" alt="NESR" class="brand-logo">
+                            <img src="PUMP_BIG.png" alt="ProPetro" class="brand-logo">
+                            <img src="novo-logo-mag-seguros-blue.png" alt="MAG Seguros" class="brand-logo">
+                            <img src="logo-irb-brasil-512.png" alt="IRB Brasil RE" class="brand-logo">
+                            <span class="text-lg font-bold text-zinc-300 uppercase tracking-widest">Equinor</span>
+                            <span class="text-lg font-bold text-zinc-300 uppercase tracking-widest">Fervo</span>
+                        </div>
+                        <div class="flex items-center space-x-16 md:space-x-24">
+                            <img src="logo-petrobras-2048.png" alt="Petrobras" class="brand-logo">
+                            <img src="315-3158664_bp-logo-british-petroleum-logo.png" alt="British Petroleum" class="brand-logo">
+                            <img src="Exxon-Mobil-Corporation-Logo.png" alt="Exxon Mobil" class="brand-logo">
+                            <img src="Pioneer-Logo.png" alt="Pioneer" class="brand-logo">
+                            <img src="ocyan__logo_8848.png" alt="Ocyan" class="brand-logo">
+                            <img src="NESR_BIG.png" alt="NESR" class="brand-logo">
+                            <img src="PUMP_BIG.png" alt="ProPetro" class="brand-logo">
+                            <img src="novo-logo-mag-seguros-blue.png" alt="MAG Seguros" class="brand-logo">
+                            <img src="logo-irb-brasil-512.png" alt="IRB Brasil RE" class="brand-logo">
+                            <span class="text-lg font-bold text-zinc-300 uppercase tracking-widest">Equinor</span>
+                            <span class="text-lg font-bold text-zinc-300 uppercase tracking-widest">Fervo</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projetos Home -->
+            <section id="projetos" class="max-w-6xl mx-auto px-6 py-32">
+                <div class="mb-24 text-center lg:text-left">
+                    <h2 class="text-4xl font-bold mb-6 text-zinc-900">Trabalhos Selecionados</h2>
+                    <p class="text-zinc-500 text-lg max-w-2xl lg:mx-0 mx-auto text-center lg:text-left">Projetos estratégicos focados em escalabilidade e ROI de design.</p>
+                </div>
+
+                <div class="space-y-40">
+                    <!-- Preview Case 1 -->
+                    <article class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+                        <div class="space-y-6">
+                            <span class="text-blue-600 font-bold text-xs uppercase tracking-widest block">VISUALIZAÇÃO DE DADOS | INTELIE</span>
+                            <h3 class="text-3xl font-bold leading-tight text-zinc-900">Data Navigation: Melhorias de navegação em dashboards dinâmicos</h3>
+                            <p class="text-zinc-600 text-lg leading-relaxed">Navegação intuitiva de dados macro e micro em ambientes operacionais complexos.</p>
+                            <button onclick="showPage('case-1')" class="inline-flex items-center gap-2 bg-zinc-900 text-white px-7 py-3.5 rounded-full font-bold hover:bg-zinc-800 transition-all">
+                                Ler case completo na próxima página
+                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                            </button>
+                        </div>
+                        <div class="aspect-[16/10] bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group">
+                            <img src="photo-1526628953301-3e589a6a8b74.jfif" alt="Dashboard operacional Intelie" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </article>
+
+                    <!-- Preview Case 2 -->
+                    <article class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+                        <div class="space-y-6">
+                            <span class="text-blue-600 font-bold text-xs uppercase tracking-widest block">VISUALIZAÇÃO DE DADOS | INTELIE</span>
+                            <h3 class="text-3xl font-bold leading-tight text-zinc-900 uppercase">Escalando ROI através de Design No-Code</h3>
+                            <p class="text-zinc-600 text-lg leading-relaxed">Autonomia para o utilizador final e redução drástica de custos técnicos de manutenção.</p>
+                            <button onclick="showPage('case-2')" class="inline-flex items-center gap-2 bg-zinc-900 text-white px-7 py-3.5 rounded-full font-bold hover:bg-zinc-800 transition-all">
+                                Ler case completo na próxima página
+                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                            </button>
+                        </div>
+                        <div class="aspect-[16/10] bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group">
+                            <img src="82061.jpg" alt="Conceito de simplificação No-Code" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- PÁGINA CASE 1 -->
+    <div id="case-1" class="page-content">
+        <article class="pt-32 pb-24">
+            <div class="max-w-4xl mx-auto px-6">
+                <button onclick="showPage('home')" class="flex items-center gap-2 text-zinc-500 hover:text-black mb-12 transition-colors">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+                    Voltar para o início
+                </button>
+                
+                <header class="mb-16">
+                    <span class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-4 block">VISUALIZAÇÃO DE DADOS | INTELIE</span>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-8 leading-tight text-zinc-900 italic">Data Navigation: Conjunto de melhorias de navegação de dados em dashboards dinâmicos</h1>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-zinc-100 text-sm">
+                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Papel</p><p class="font-semibold">Designer de Produto</p></div>
+                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Ano</p><p class="font-semibold">2023</p></div>
+                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Duração</p><p class="font-semibold">~8 meses</p></div>
+                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Equipe</p><p class="font-semibold text-zinc-900">Lead + 4 Devs</p></div>
+                    </div>
+                </header>
+
+                <div class="case-text prose prose-zinc prose-lg max-w-none">
+                    <p class="italic text-sm text-zinc-400 mb-10">Este é um projeto interno da INTELIE, com restrições de conteúdo para preservação de dados sensíveis.</p>
+                    
+                    <section>
+                        <h2>Responsabilidades</h2>
+                        <ul>
+                            <li>Estabelecimento de processo de design</li>
+                            <li>Processo de discovery e definição</li>
+                            <li>Entrevista semiestruturada</li>
+                            <li>Estratégia de priorização</li>
+                            <li>Apresentação executiva e Documentação de Handoff</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Visão Geral</h2>
+                        <p>O utilizador de O&G necessita consumir, no mesmo dashboard, informações gerais sobre a vida útil de um poço e eventos menores de interesse dentro de uma visão "macro". O Data Navigation foi projetado para uma interação fluida em widgets dinâmicos, reduzindo o tempo de espera e aumentando a eficiência operacional.</p>
+                    </section>
+
+                    <section>
+                        <h2>Entendimento do Problema</h2>
+                        <blockquote>“As pessoas que utilizam os dashboards precisam navegar de forma fluida, rápida e assertiva pelos gráficos, porque atualmente têm dificuldade para explorar os dados e o tempo de carregamento é longo."</blockquote>
+                    </section>
+
+                    <section class="bg-zinc-900 text-white p-10 rounded-3xl shadow-xl mt-12">
+                        <h2 class="text-white mt-0">Resultados</h2>
+                        <p class="text-zinc-300 leading-relaxed italic">Melhoria significativa de performance através do pré-carregamento de dados, eliminando esperas de requisição e permitindo renderização instantânea nas interações de zoom.</p>
+                    </section>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- PÁGINA CASE 2 -->
+    <div id="case-2" class="page-content">
+        <article class="pt-32 pb-24">
+            <div class="max-w-4xl mx-auto px-6">
+                <button onclick="showPage('home')" class="flex items-center gap-2 text-zinc-500 hover:text-black mb-12 transition-colors">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+                    Voltar para o início
+                </button>
+                
+                <header class="mb-16">
+                    <span class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-4 block">VISUALIZAÇÃO DE DADOS | INTELIE</span>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-8 leading-tight text-zinc-900 uppercase">Otimização de Visualização de Dados: Escalando ROI através de Design No-Code</h1>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-zinc-100 text-sm">
+                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Papel</p><p class="font-semibold">Designer de Produto</p></div>
+                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Ano</p><p class="font-semibold">2025/2026</p></div>
+                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Status</p><p class="font-semibold">Em andamento</p></div>
+                        <div><p class="text-zinc-400 uppercase font-bold text-[10px] mb-1">Foco</p><p class="font-semibold">ROI No-Code</p></div>
+                    </div>
+                </header>
+
+                <div class="case-text prose prose-zinc prose-lg max-w-none">
+                    <section>
+                        <h2>1. Contexto Estratégico</h2>
+                        <h3>Problema identificado</h3>
+                        <p>Um widget de
