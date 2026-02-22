@@ -71,7 +71,7 @@
         transform: scale(1.05);
       }
 
-      /* Tipografia Original dos Cases Restaurada */
+      /* Case typography (explicit CSS replacing Tailwind `@apply`) */
       .case-text h2 {
         @apply text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight;
       }
@@ -86,6 +86,13 @@
       }
       .case-text blockquote {
         @apply border-l-4 border-blue-600 pl-6 py-2 italic bg-zinc-50 rounded-r-lg mb-8 text-zinc-700;
+      }
+      /* Brand logo modifiers to avoid inline styles */
+      .brand-logo--h38 {
+        @apply h-9; /* 38px */
+      }
+      .brand-logo--h44 {
+        @apply h-11; /* 44px */
       }
     </style>
   </head>
