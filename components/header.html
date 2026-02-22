@@ -5,49 +5,38 @@
     class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between"
     aria-label="Navegação Principal"
   >
-    <button
-      hx-get="components/hero.html"
-      hx-target="#main-content"
+    <a
+      href="#sobre"
       class="text-xl font-bold tracking-tight uppercase"
+      title="Carmem Ferreira"
     >
       CARMEM FERREIRA.
-    </button>
+    </a>
     <ul
       class="hidden md:flex space-x-8 text-sm font-medium text-zinc-500 items-center"
     >
       <li>
-        <button
-          title="home"
-          hx-get="components/hero.html"
-          hx-target="#main-content"
-          class="hover:text-black transition-colors"
-          data-i18n="nav-home"
-        ></button>
-      </li>
-      <li>
-        <button
-          title="about"
-          hx-get="components/hero.html"
-          hx-target="#main-content"
+        <a
+          href="#sobre"
+          title="Sobre"
           class="hover:text-black transition-colors"
           data-i18n="nav-about"
-        ></button>
+        ></a>
       </li>
       <li>
-        <button
-          title="projects"
-          hx-get="components/projects.html"
-          hx-target="#main-content"
+        <a
+          href="#projetos"
+          title="Projetos"
           class="hover:text-black transition-colors"
           data-i18n="nav-projects"
-        ></button>
+        ></a>
       </li>
       <li>
         <a
           href="#contato"
           class="hover:text-black transition-colors"
           data-i18n="nav-contact"
-          title="contact"
+          title="Contato"
         ></a>
       </li>
       <li>
