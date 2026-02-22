@@ -1,0 +1,76 @@
+<article class="pt-32 pb-24">
+  <div class="max-w-4xl mx-auto px-6">
+    <button
+      title="projects"
+      hx-get="components/projects.html"
+      hx-target="#main-content"
+      class="text-zinc-500 hover:text-black mb-12 flex items-center gap-2 transition-colors"
+    >
+      <svg
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path d="m15 18-6-6 6-6"></path>
+      </svg>
+      <span data-i18n="btn-back"></span>
+    </button>
+
+    <header class="mb-16">
+      <span
+        class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-4 block"
+        data-i18n="case1-tag"
+      ></span>
+      <h1
+        class="text-4xl md:text-5xl font-bold mb-8 leading-tight text-zinc-900 uppercase"
+        data-i18n="case2-title"
+      ></h1>
+      <div
+        class="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-zinc-100 text-sm"
+      >
+        <div>
+          <p
+            class="text-zinc-400 uppercase font-bold text-[10px] mb-1"
+            data-i18n="meta-role"
+          ></p>
+          <p class="font-semibold" data-i18n="meta-role-val-1"></p>
+        </div>
+        <div>
+          <p
+            class="text-zinc-400 uppercase font-bold text-[10px] mb-1"
+            data-i18n="meta-year"
+          ></p>
+          <p class="font-semibold">2025/2026</p>
+        </div>
+        <div>
+          <p
+            class="text-zinc-400 uppercase font-bold text-[10px] mb-1"
+            data-i18n="meta-status"
+          ></p>
+          <p class="font-semibold" data-i18n="meta-status-val"></p>
+        </div>
+        <div>
+          <p
+            class="text-zinc-400 uppercase font-bold text-[10px] mb-1"
+            data-i18n="meta-focus"
+          ></p>
+          <p class="font-semibold">ROI No-Code</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="case-text prose prose-zinc prose-lg max-w-none">
+      <section class="case-text">
+        <h2
+          class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight"
+          data-i18n="case2-context-title"
+        ></h2>
+        <h3 data-i18n="case2-problem-title"></h3>
+        <p data-i18n="case2-problem-desc"></p>
+      </section>
+    </div>
+  </div>
+</article>
