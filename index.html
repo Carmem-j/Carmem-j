@@ -56,12 +56,6 @@
           transform: translateX(-50%);
         }
       }
-      .brand-logo {
-        /* Removed: @apply rules - classes now applied directly in markup */
-      }
-      .brand-logo:hover {
-        /* Removed: @apply rules - classes now applied directly in markup */
-      }
 
       /* Case typography using CSS (no @apply needed for descendant selectors) */
       .case-text h2 {
@@ -104,13 +98,6 @@
         border-radius: 0 0.5rem 0.5rem 0;
         margin-bottom: 2rem;
         color: #3f3f46;
-      }
-      /* Brand logo modifiers - no longer needed, @apply removed */
-      .brand-logo--h38 {
-        /* Removed: @apply h-9 - classes now in markup */
-      }
-      .brand-logo--h44 {
-        /* Removed: @apply h-11 - classes now in markup */
       }
 
       /* Language button active state */
@@ -219,7 +206,7 @@
           el.scrollIntoView({ behavior: 'smooth' });
         } else {
           sessionStorage.setItem('scrollAfterLoad', id);
-          window.location.reload();
+          window.location.href = window.location.pathname;
         }
       }
 
