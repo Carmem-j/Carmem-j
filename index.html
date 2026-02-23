@@ -131,20 +131,28 @@
       hx-swap="outerHTML"
     ></div>
 
-    <main id="main-content">
-      <div
-        hx-get="components/hero.html"
-        hx-trigger="load"
-        hx-target="#main-content"
-        hx-swap="innerHTML"
-      ></div>
-    </main>
+    <div id="app">
+      <main id="main-content">
+        <div
+          hx-get="components/hero.html"
+          hx-trigger="load"
+          hx-swap="innerHTML"
+        ></div>
+      </main>
 
-    <div
-      hx-get="components/brands.html"
-      hx-trigger="load"
-      hx-swap="outerHTML"
-    ></div>
+      <div
+        hx-get="components/brands.html"
+        hx-trigger="load"
+        hx-swap="outerHTML"
+      ></div>
+
+      <div
+        hx-get="components/projects.html"
+        hx-trigger="load"
+        hx-swap="outerHTML"
+      ></div>
+    </div>
+
     <div
       hx-get="components/footer.html"
       hx-trigger="load"
@@ -160,6 +168,14 @@
         translations = await res.json();
         translatePage();
         updateLanguageButtons();
+        const scrollTarget = sessionStorage.getItem('scrollAfterLoad');
+        if (scrollTarget) {
+          sessionStorage.removeItem('scrollAfterLoad');
+          setTimeout(() => {
+            const el = document.getElementById(scrollTarget);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 400);
+        }
       }
 
       function translatePage() {
@@ -185,6 +201,16 @@
           });
       }
 
+      function navigateTo(id) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          sessionStorage.setItem('scrollAfterLoad', id);
+          window.location.reload();
+        }
+      }
+
       function setLanguage(lang) {
         currentLang = lang;
         localStorage.setItem('preferredLang', lang);
@@ -195,7 +221,7 @@
       document.body.addEventListener('htmx:afterOnLoad', () => {
         translatePage();
         updateLanguageButtons();
-        window.scrollTo(0, 0); // Scroll ao topo ao trocar de Case
+        window.scrollTo(0, 0);
       });
 
       window.onload = initI18n;
