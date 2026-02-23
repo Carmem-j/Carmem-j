@@ -168,6 +168,18 @@
         translations = await res.json();
         translatePage();
         updateLanguageButtons();
+
+        // Handle direct URL with case hash (e.g. /#case-1)
+        const hash = window.location.hash;
+        if (hash === '#case-1' || hash === '#case-2') {
+          const num = hash === '#case-1' ? '1' : '2';
+          htmx.ajax('GET', `components/case-${num}.html`, {
+            target: '#app',
+            swap: 'innerHTML',
+          });
+          return;
+        }
+
         const scrollTarget = sessionStorage.getItem('scrollAfterLoad');
         if (scrollTarget) {
           sessionStorage.removeItem('scrollAfterLoad');
