@@ -57,37 +57,67 @@
         }
       }
       .brand-logo {
-        /* base logo styles using Tailwind utilities via @apply */
-        @apply h-7 w-auto max-w-[120px] object-contain filter grayscale opacity-40 transition-all;
+        /* Removed: @apply rules - classes now applied directly in markup */
       }
       .brand-logo:hover {
-        @apply filter grayscale-0 opacity-100 transform scale-105;
+        /* Removed: @apply rules - classes now applied directly in markup */
       }
 
-      /* Case typography using Tailwind @apply (CDN-only) */
+      /* Case typography using CSS (no @apply needed for descendant selectors) */
       .case-text h2 {
-        @apply text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #18181b;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: -0.025em;
       }
       .case-text h3 {
-        @apply text-xl font-bold text-zinc-900 mt-8 mb-4;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #18181b;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
       }
       .case-text p {
-        @apply text-zinc-600 leading-relaxed mb-6;
+        color: #52525b;
+        line-height: 1.625;
+        margin-bottom: 1.5rem;
       }
       .case-text ul {
-        @apply list-disc pl-6 mb-8 space-y-2 text-zinc-600;
+        list-style-type: disc;
+        padding-left: 1.5rem;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        color: #52525b;
       }
       .case-text blockquote {
-        @apply border-l-4 border-blue-600 pl-6 py-2 italic bg-zinc-50 rounded-r-lg mb-8 text-zinc-700;
+        border-left: 4px solid #2563eb;
+        padding-left: 1.5rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        font-style: italic;
+        background-color: #f4f4f5;
+        border-radius: 0 0.5rem 0.5rem 0;
+        margin-bottom: 2rem;
+        color: #3f3f46;
       }
-      /* Brand logo modifiers to avoid inline styles */
+      /* Brand logo modifiers - no longer needed, @apply removed */
       .brand-logo--h38 {
-        @apply h-9; /* 38px */
+        /* Removed: @apply h-9 - classes now in markup */
       }
       .brand-logo--h44 {
-        @apply h-11; /* 44px */
+        /* Removed: @apply h-11 - classes now in markup */
       }
-      /* Note: specific brand logo heights may still be applied via utility classes in markup (h-9 / h-11) */
+
+      /* Language button active state */
+      .lang-btn-active {
+        background-color: black;
+        color: white !important;
+      }
     </style>
   </head>
   <body class="antialiased">
@@ -123,12 +153,13 @@
 
     <script>
       let translations = {};
-      let currentLang = 'pt';
+      let currentLang = localStorage.getItem('preferredLang') || 'pt';
 
       async function initI18n() {
         const res = await fetch('translations.json');
         translations = await res.json();
         translatePage();
+        updateLanguageButtons();
       }
 
       function translatePage() {
@@ -142,13 +173,28 @@
         document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
       }
 
+      function updateLanguageButtons() {
+        document
+          .querySelectorAll('button[onclick*="setLanguage"]')
+          .forEach((btn) => {
+            btn.classList.remove('lang-btn-active');
+            const btnLang = btn.textContent.trim().toLowerCase();
+            if (btnLang === currentLang) {
+              btn.classList.add('lang-btn-active');
+            }
+          });
+      }
+
       function setLanguage(lang) {
         currentLang = lang;
+        localStorage.setItem('preferredLang', lang);
         translatePage();
+        updateLanguageButtons();
       }
 
       document.body.addEventListener('htmx:afterOnLoad', () => {
         translatePage();
+        updateLanguageButtons();
         window.scrollTo(0, 0); // Scroll ao topo ao trocar de Case
       });
 
