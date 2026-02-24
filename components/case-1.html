@@ -64,7 +64,7 @@
 
       <section>
         <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight">
-          Visão Geral
+         1. Visão Geral
         </h2>
         <p>
           O usuário, principalmente de O&G, necessita ter a capacidade de consumir, no mesmo dashboard, informações gerais sobre a vida útil de um poço e eventos menores de interesse dentro dessa visão "macro", representada por uma grande janela temporal. Para proporcionar melhorias de navegação de dados dinâmicos, o Data Navigation foi projetado para que o usuário possa interagir de forma mais fluida e intuitiva nos diferentes widgets que o dashboard possa apresentar e teve como resultados iniciais uma melhora significativa de performance, com a redução de tempo de carregamento a cada interação nos widgets.
@@ -73,7 +73,7 @@
 
       <section>
         <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight">
-          Entendimento do problema
+          2. Entendimento do problema
         </h2>
         <p>
           Foi definida com síntese do problema a seguinte frase: “As pessoas que utilizam os dashboards precisam navegar de forma fluida, rápida e assertiva pelos gráficos, porque atualmente elas têm dificuldade para explorar os dados no dashboard e em muitos casos o tempo de carregamento é muito longo".
@@ -82,7 +82,7 @@
 
       <section>
         <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight">
-          Pesquisa
+          3. Pesquisa
         </h2>
         <p>
           Foram feitas interações via slack e entrevistas semi-estruturadas com diferentes stakeholders para obtenção de dados qualitativos de comportamento, dores e expectativas.
@@ -106,7 +106,7 @@
         </ul>
       </section>
 
-      <section>
+      <section class="case-text">
         <h3>
           Coleta de dados
         </h3>
@@ -132,10 +132,63 @@
 
       <section>
         <blockquote class="p-4 my-4 border-s-4 border-default bg-neutral-secondary-soft">
-          <p class="text-xl italic font-medium leading-relaxed text-heading">”E aí, por exemplo, depois que você dá zoom conseguir restaurar Né? O zoom movendo para frente, para trás em né? Dando mais agilidade na visualização dele no gráfico. Porque assim é você pensar na dinâmica do usuário, eu vou querer dar um zoom naquele momento para ver o que aconteceu, mas depois eu quero voltar para a visão macro, hã? Aí para voltar para a visão macro, eu vou ter que voltar ali no provavelmente ali no Calendário, e vou ter que falar que eu quero a última hora, último período.” (usuário entrevistado)
+          <p class="italic font-medium leading-relaxed text-heading">”E aí, por exemplo, depois que você dá zoom conseguir restaurar Né? O zoom movendo para frente, para trás em né? Dando mais agilidade na visualização dele no gráfico. Porque assim é você pensar na dinâmica do usuário, eu vou querer dar um zoom naquele momento para ver o que aconteceu, mas depois eu quero voltar para a visão macro, hã? Aí para voltar para a visão macro, eu vou ter que voltar ali no provavelmente ali no Calendário, e vou ter que falar que eu quero a última hora, último período.” (usuário entrevistado)
           </p>
           </blockquote>
       </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight">
+          4. Proto Personas
+        </h2>
+        <p>
+          Foram descobertos dois tipos de usuários, por tipo de consumo de dados.
+        </p>
+      </section>
+
+      <section class="case-text">
+        <h3>
+          Usuário que consome dados em tempo real
+        </h3>
+        <p>
+          Conhecido de diferentes formas, dentre elas suporte operacional, engenheiro de avaliação de dados de performance ou specialist monitoring, é o usuário Interessado no que está acontecendo agora, passa a maior parte do tempo vendo dados em tempo real, mas às vezes volta um pouco no span de tempo pra ver recortes específicos e investigar pontos de interesse.
+        </p>
+      </section>
+
+      <section class="case-text">
+        <h3>
+          Usuário que consome dados históricos e em tempo real
+        </h3>
+        <p>
+          Seja com cargo gerencial ou um engenheiro especialista, é um usuário que geralmente usa um  gráfico temporal com span grande com canais que faça sentido olhar algum tipo de avanço ou mudança cuja relevância não ocorre "every second", mas sim "every hour", "every day", "every week", tanto dados históricos quanto em tempo real. Trata-se de um usuário mais interessado nos KPIs e na eficiência das operações e com a estabilidade do poço.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight">
+          5. Desafio Sintetizado
+        </h2>
+        <p>
+          Usando o framework “How might we?”, foram levantados diversos desafios, sintetizados na seguinte frase: “Como nós podemos permitir que a pessoa usuária interaja de forma mais prática e fluida com os gráficos ao navegar pelos dados, com um tempo de resposta reduzido?”
+        </p>
+      </section>
+
+      <figure>
+          <div
+            class="mt-12 bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group"
+          >
+            <img
+              src="images/case1_image2.png"
+              alt="Captura de tela do figjam, demonstrando parte da sintetização da pesquisa."
+              class="w-full h-full object-cover transition-transform duration-500"
+            />
+          </div>
+          <figcaption class="w-full mt-3 text-center" data-i18n="case2-decisions-img2-cap">
+            Definição do desafio no Figjam
+          </figcaption>
+        </figure>
+
+
 
     <section class="bg-zinc-900 text-white p-10 rounded-3xl shadow-xl mt-12">
       <h2
