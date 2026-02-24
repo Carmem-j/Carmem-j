@@ -15,18 +15,19 @@
       >
         <path d="m15 18-6-6 6-6"></path>
       </svg>
-      <span data-i18n="btn-back">Voltar para o início</span>
+      <span data-i18n="btn-back">Voltar para projetos</span>
     </a>
 
     <header class="mb-16">
       <span
         class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-4 block"
         data-i18n="case1-tag"
-      >SISTEMA DE DESIGN | CORPORATIVO</span>
+      >VISUALIZAÇÃO DE DADOS | INTELIE</span>
       <h1
-        class="text-4xl md:text-5xl font-bold mb-8 leading-tight text-zinc-900 uppercase"
+        class="text-4xl md:text-5xl font-bold mb-8 italic text-zinc-900"
         data-i18n="case1-title"
-      >Unificação de Identidade Visual e Design System</h1>
+      >Data Navigation</h1>
+
       <div
         class="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-zinc-100 text-sm"
       >
@@ -42,117 +43,291 @@
             class="text-zinc-400 uppercase font-bold text-[10px] mb-1"
             data-i18n="meta-year"
           >Ano</p>
-          <p class="font-semibold">2023/2024</p>
+          <p class="font-semibold">2023</p>
         </div>
         <div>
           <p
             class="text-zinc-400 uppercase font-bold text-[10px] mb-1"
-            data-i18n="meta-status"
-          >Status</p>
-          <p class="font-semibold" data-i18n="meta-status-val-concluido">Concluído</p>
+            data-i18n="meta-duration"
+          >Duração</p>
+          <p class="font-semibold" data-i18n="case1-duration">3 meses</p>
         </div>
         <div>
           <p
             class="text-zinc-400 uppercase font-bold text-[10px] mb-1"
-            data-i18n="meta-focus"
-          >Foco</p>
-          <p class="font-semibold" data-i18n="case1-focus-val">Design System</p>
+            data-i18n="meta-team"
+          >Equipe</p>
+          <p class="font-semibold text-zinc-900" data-i18n="case1-team">Equipe de Visualização de Dados</p>
         </div>
       </div>
     </header>
 
-    <div class="case-text prose prose-zinc prose-lg max-w-none">
+      <section>
+        <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight" data-i18n="case1-overview-title">
+         1. Visão Geral
+        </h2>
+        <p data-i18n="case1-overview-p1">
+          O usuário, principalmente de O&G, necessita ter a capacidade de consumir, no mesmo dashboard, informações gerais sobre a vida útil de um poço e eventos menores de interesse dentro dessa visão "macro", representada por uma grande janela temporal. Para proporcionar melhorias de navegação de dados dinâmicos, o Data Navigation foi projetado para que o usuário possa interagir de forma mais fluida e intuitiva nos diferentes widgets que o dashboard possa apresentar e teve como resultados iniciais uma melhora significativa de performance, com a redução de tempo de carregamento a cada interação nos widgets.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight" data-i18n="case1-problem-title">
+          2. Entendimento do problema
+        </h2>
+        <p data-i18n="case1-problem-p1">
+          Foi definida com síntese do problema a seguinte frase: “As pessoas que utilizam os dashboards precisam navegar de forma fluida, rápida e assertiva pelos gráficos, porque atualmente elas têm dificuldade para explorar os dados no dashboard e em muitos casos o tempo de carregamento é muito longo".
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight" data-i18n="case1-research-title">
+          3. Pesquisa
+        </h2>
+        <p data-i18n="case1-research-p1">
+          Foram feitas interações via slack e entrevistas semi-estruturadas com diferentes stakeholders para obtenção de dados qualitativos de comportamento, dores e expectativas.
+        </p>
+      </section>
+
       <section class="case-text">
-        <h2
-          class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight"
-          data-i18n="case1-context-title"
-        >1. Contexto Estratégico</h2>
-        <h3 data-i18n="case1-problem-title">Problema identificado</h3>
-        <p data-i18n="case1-problem-desc">Havia uma inconsistência visual significativa entre os diferentes produtos da empresa, resultando em uma experiência fragmentada para o usuário e aumento do tempo de desenvolvimento de novas interfaces.</p>
-        
-        <h3 data-i18n="case1-section2-title">Objetivos</h3>
+        <h3 data-i18n="case1-methodology-title">
+          Metodologia
+        </h3>
         <ul>
-          <li data-i18n="case1-obj-1">
-            Criar uma biblioteca de componentes centralizada e escalável;
+          <li data-i18n="case1-methodology-l1">
+            Recrutamento: Stakeholders internos e externos de diferentes segmentos, maioria de O&G;
           </li>
-          <li data-i18n="case1-obj-2">
-            Padronizar a interface de usuário (UI) e os padrões de interação (UX) em todas as plataformas;
+          <li data-i18n="case1-methodology-l2">
+            Participantes: 3 stakeholders externos e 9 stakeholders internos, dentre eles: engenheiros, cientistas de dados e SMEs (especialistas de domínio);
           </li>
-          <li data-i18n="case1-obj-3">
-            Reduzir o tempo de design e desenvolvimento (time-to-market) para novas funcionalidades.
+          <li data-i18n="case1-methodology-l3">
+            Formato: Entrevista semiestruturada (modelo flexível, com roteiro prévio, mas aberto para perguntas fora do planejado);
           </li>
         </ul>
+      </section>
 
-        <h2
-          class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight"
-          data-i18n="case1-challenge-title"
-        >
-          2. Desafio
-        </h2>
-        <p data-i18n="case1-challenge-p1">
-          O maior desafio foi mapear todos os componentes existentes nos produtos legados e definir um plano de migração gradual que não impactasse o roadmap atual das equipas de desenvolvimento.
+      <section class="case-text">
+        <h3 data-i18n="case1-data-collection-title">
+          Coleta de dados
+        </h3>
+        <p data-i18n="case1-data-collection-p1">
+          Após o processo de transcrição das entrevistas gravadas, foi feita a categorização das falas dos entrevistados em grandes grupos e, em seguida,os trechos categorizados foram divididos novamente, em subcategorias, a fim de facilitar a encontrabilidade dos dados por assunto e organizar as informações coletadas.
         </p>
-        <figure>
+      </section>
+
+       <figure>
           <div
-            class="bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group"
+            class="mt-12 bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group"
           >
             <img
               src="images/case1_image1.png"
-              alt="Auditoria visual dos produtos legados."
+              alt="Captura de tela do figma, com diversos trechos de falas coletadas de entrevistas."
               class="w-full h-full object-cover transition-transform duration-500"
             />
           </div>
-          <figcaption class="w-full mt-3 text-center" data-i18n="case1-challenge-img1-cap">
-            Auditoria visual dos produtos legados
+          <figcaption class="w-full mt-3 text-center" data-i18n="case1-img1-caption">
+            Coleta de dados qualitativos
           </figcaption>
         </figure>
-        <p class="mt-12" data-i18n="case1-challenge-p2">
-          Foi essencial realizar workshops com as equipas de engenharia e produto para garantir o alinhamento sobre as tecnologias a serem utilizadas e a governança do novo Design System. A adoção precisava ser orgânica, orientada a valor.
-        </p>
 
-        <h2
-          class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight"
-          data-i18n="case1-decisions-title"
-        >
-          3. Decisões Estratégicas
+      <section>
+        <blockquote class="p-4 my-4 border-s-4 border-default bg-neutral-secondary-soft">
+          <p class="italic font-medium leading-relaxed text-heading" data-i18n="case1-quote1">”E aí, por exemplo, depois que você dá zoom conseguir restaurar Né? O zoom movendo para frente, para trás em né? Dando mais agilidade na visualização dele no gráfico. Porque assim é você pensar na dinâmica do usuário, eu vou querer dar um zoom naquele momento para ver o que aconteceu, mas depois eu quero voltar para a visão macro, hã? Aí para voltar para a visão macro, eu vou ter que voltar ali no provavelmente ali no Calendário, e vou ter que falar que eu quero a última hora, último período.” (usuário entrevistado)
+          </p>
+          </blockquote>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight" data-i18n="case1-personas-title">
+          4. Proto Personas
         </h2>
-        <p data-i18n="case1-decisions-p1">
-          Optamos por utilizar a metodologia de Atomic Design para estruturar a biblioteca no Figma, garantindo flexibilidade. Além disso, implementámos o uso de Design Tokens para facilitar a transição entre diferentes temas e produtos.
+        <p data-i18n="case1-personas-p1">
+          Foram descobertos dois tipos de usuários, por tipo de consumo de dados.
         </p>
-        <figure>
+      </section>
+
+      <section class="case-text">
+        <h3 data-i18n="case1-persona1-title">
+          Usuário que consome dados em tempo real
+        </h3>
+        <p data-i18n="case1-persona1-p1">
+          Conhecido de diferentes formas, dentre elas suporte operacional, engenheiro de avaliação de dados de performance ou specialist monitoring, é o usuário Interessado no que está acontecendo agora, passa a maior parte do tempo vendo dados em tempo real, mas às vezes volta um pouco no span de tempo pra ver recortes específicos e investigar pontos de interesse.
+        </p>
+      </section>
+
+      <section class="case-text">
+        <h3 data-i18n="case1-persona2-title">
+          Usuário que consome dados históricos e em tempo real
+        </h3>
+        <p data-i18n="case1-persona2-p1">
+          Seja com cargo gerencial ou um engenheiro especialista, é um usuário que geralmente usa um  gráfico temporal com span grande com canais que faça sentido olhar algum tipo de avanço ou mudança cuja relevância não ocorre "every second", mas sim "every hour", "every day", "every week", tanto dados históricos quanto em tempo real. Trata-se de um usuário mais interessado nos KPIs e na eficiência das operações e com a estabilidade do poço.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight" data-i18n="case1-challenge-title">
+          5. Desafio Sintetizado
+        </h2>
+        <p data-i18n="case1-challenge-p1">
+          Usando o framework “How might we?”, foram levantados diversos desafios, sintetizados na seguinte frase: “Como nós podemos permitir que a pessoa usuária interaja de forma mais prática e fluida com os gráficos ao navegar pelos dados, com um tempo de resposta reduzido?”
+        </p>
+      </section>
+
+      <figure>
           <div
-            class="bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group"
+            class="mt-12 bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group"
           >
             <img
               src="images/case1_image2.png"
-              alt="Estrutura de Design Tokens e Componentes base."
+              alt="Captura de tela do figjam, demonstrando parte da sintetização da pesquisa."
               class="w-full h-full object-cover transition-transform duration-500"
             />
           </div>
-          <figcaption class="w-full mt-3 text-center" data-i18n="case1-decisions-img1-cap">
-            Estrutura de Design Tokens e Componentes base no Figma
+          <figcaption class="w-full mt-3 text-center" data-i18n="case1-img2-caption">
+            Definição do desafio no Figjam
           </figcaption>
         </figure>
 
-        <h2
-          class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight"
-          data-i18n="case1-impact-title"
-        >
-          4. O Impacto
+        <section>
+        <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight" data-i18n="case1-solution-title">
+          6. O Data Navigation
         </h2>
-        <p data-i18n="case1-impact-p1">
-          A implementação do Design System reduziu em 30% o tempo gasto pela equipa de design na criação de novas telas e diminuiu significativamente os bugs de interface em produção.
-        </p>
-        <p data-i18n="case1-impact-p2">
-          As equipas de front-end agora conseguem montar fluxos complexos utilizando blocos pré-construídos e validados, garantindo acessibilidade (WCAG) e consistência desde o dia zero.
+        <p data-i18n="case1-solution-p1">
+          Diante do desafio sintetizado, foi desenvolvido o Data Navigation, composto por três features principais:
         </p>
       </section>
-      
-      <section class="bg-zinc-900 text-white p-10 rounded-3xl shadow-xl mt-12">
-        <p class="leading-relaxed italic" data-i18n="case1-disclaimer-full">
-          Alguns dados e imagens foram alterados para respeitar acordos de confidencialidade (NDA).
+
+      <section class="case-text">
+        <h3 data-i18n="case1-feature1-title">
+          Feature 1: Zoom controls
+        </h3>
+        <p data-i18n="case1-feature1-p1">
+          Feature tem o objetivo de trazer melhorias de usabilidade na navegação manual do usuário dentro dos widgets do dashboard. A interação de zoom in e zoom out afeta todos os widgets que seguem o mesmo tipo de span.
+        </p>
+        <p data-i18n="case1-feature1-p2">
+          Além da possibilidade de realizar zoom in e zoom out por meio do mouse wheel, o usuário pode fazer zoom in selecionando o trecho de interesse no gráfico e fazer zoom out dando duplo clique em qualquer local do widget.
         </p>
       </section>
-    </div>
+
+      <figure>
+          <div
+            class="mt-12 bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group"
+          >
+            <img
+              src="images/case1_image3.png"
+              alt="Captura de tela do figma, demonstrando a documentação parcial de mockups de atalhos de zoom e scroll."
+              class="w-full h-full object-cover transition-transform duration-500"
+            />
+          </div>
+          <figcaption class="w-full mt-3 text-center" data-i18n="case1-img3-caption">
+            Zoom Controls
+          </figcaption>
+        </figure>
+
+        <section class="case-text">
+        <h3 data-i18n="case1-feature2-title">
+          Feature 2: Span control widget
+        </h3>
+        <p data-i18n="case1-feature2-p1">
+          Feature tem o objetivo de auxiliar as ferramentas de controle de zoom para navegação pelos dados, a nível de dashboard.</p>
+        <p data-i18n="case1-feature2-p2">
+          Além disso, é dada ao usuário, em sua maioria de O&G, a possibilidade de ver e controlar, no mesmo dashboard, trechos de interesse de um processo inteiro de perfuração.</p>
+        <p data-i18n="case1-feature2-p3">
+          Importante mencionar que se trata de um widget genérico, portanto a possibilidade de ver um span ”macro” pode ser expandida além do cenário de O&G.
+        </p>
+        </section>
+
+        <figure>
+          <div
+            class="mt-12 bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group"
+          >
+            <img
+              src="images/case1_image4.png"
+              alt="Captura de tela do figma, demonstrando a documentação parcial do Span Control Widget."
+              class="w-full h-full object-cover transition-transform duration-500"
+            />
+          </div>
+          <figcaption class="w-full mt-3 text-center" data-i18n="case1-img4-caption">
+            Span Control Widget
+          </figcaption>
+        </figure>
+
+        <section class="case-text">
+        <h3 data-i18n="case1-feature3-title">
+          Feature 3: Multiple Span Picker
+        </h3>
+        <p data-i18n="case1-feature3-p1">
+          Feature tem o objetivo de possibilitar que o usuário tenha controle de mais de um tipo de span no mesmo dashboard.</p>
+          <p data-i18n="case1-feature3-p2">Além da possibilidade de ter mais de um tipo de span no mesmo dashboard, haverá também a possibilidade de vincular os dois tipos de span, de forma que o usuário selecione um intervalo no tempo e o sistema apresente, também, o intervalo de profundidade correspondente ao intervalo de tempo selecionado.
+            </p>
+          </section>
+
+          <figure>
+          <div
+            class="mt-12 bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group"
+          >
+            <img
+              src="images/case1_image5.png"
+              alt="Captura de tela do figma, demonstrando a documentação do multiple span picker."
+              class="w-full h-full object-cover transition-transform duration-500"
+            />
+          </div>
+          <figcaption class="w-full mt-3 text-center" data-i18n="case1-img5-caption">
+           Multiple Span Picker
+          </figcaption>
+        </figure>
+
+        <section>
+        <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight" data-i18n="case1-results-title">
+          7. Resultados
+        </h2>
+        <p data-i18n="case1-results-p1">
+          Embora a INTELIE não possua estrutura para coleta de métricas de performance, foi observada uma melhoria significativa no tempo de carregamento a cada interação com as novas features de navegação, tendo em vista que anteriormente o sistema fazia uma nova requisição a cada interação do usuário com o widget, enquanto o Data Navigation tem como premissa deixar os dados pré carregados, sem realizar novas requisições a cada interação, resultando em interações de zoom in, por exemplo, sem tempo de espera de carregamento e renderização instantânea.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-zinc-900 mt-12 mb-6 uppercase tracking-tight" data-i18n="case1-conclusion-title">
+          8. Conclusão
+        </h2>
+        <p data-i18n="case1-conclusion-p1">
+          Ainda que o projeto tenha sido originado de uma hipótese já levantada como dor por alguns dos clientes listados neste documento, fazer um processo de pesquisa robusto foi muito importante não apenas para validar a hipótese levantada, mas também para levantar expectativas que estavam relacionadas aos problemas encontrados, que não estavam tão em evidência. Além disso, este foi o primeiro projeto que necessitou em seu processo o relacionamento entre diferentes equipes, como a equipe voltada para visualização de dados e a equipe voltada para performance da plataforma.
+        </p>
+      </section>
+
+      <section class="case-text">
+        <h2 data-i18n="case1-challenges-title">
+          9. Desafios do Projeto
+        </h2>
+        <ul>
+          <li data-i18n="case1-challenges-l1">
+            Realizar entrevistas com stakeholders externos e usuários;
+          </li>
+          <li data-i18n="case1-challenges-l2">
+            Estudo aprofundado sobre domínio de O&G;
+          </li>
+          <li data-i18n="case1-challenges-l3">
+            Alinhamento de priorização entre diferentes squads (nem todos as particularidades do projeto seriam desenvolvidas pela equipe na qual eu estava alocada);
+          </li>
+          <li data-i18n="case1-challenges-l4">
+            Necessidade de alinhamentos constantes com lideranças;
+          </li>
+          <li data-i18n="case1-challenges-l5">
+            Gerenciamento de mais de mais de uma feature gerada no mesmo produto;
+          </li>
+        </ul>
+      </section>
+
+    <section class="bg-zinc-900 text-white p-10 rounded-3xl shadow-xl mt-12">
+      <h2
+        class="text-xl font-bold uppercase tracking-tight text-white mt-0 mb-6"
+        data-i18n="case1-disclaimer-title"
+      >DISCLAIMER
+    </h2>
+      <p
+        class="text-zinc-300 leading-relaxed italic"
+        data-i18n="case2-disclaimer-full"
+      >Este é um projeto interno da INTELIE, portanto a apresentação possuirá restrições de conteúdo para preservar dados sensíveis. Além disso, vale mencionar que a INTELIE tem todos os direitos reservados.</p>
+    </section>
   </div>
 </article>
