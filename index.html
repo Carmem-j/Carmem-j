@@ -181,6 +181,16 @@
         color: white !important;
       }
 
+      /* Botões de download de currículo */
+      .resume-btn {
+        background-color: #18181b;
+        color: #ffffff;
+      }
+      .resume-btn:hover {
+        background-color: #ffffff;
+        color: #18181b;
+      }
+
       /* Respeito à preferência do usuário por movimento reduzido (WCAG 2.3.3) */
       @media (prefers-reduced-motion: reduce) {
         .carousel-track {
@@ -290,6 +300,25 @@
           }
         });
         document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
+        updateResumeLinks();
+      }
+
+      function updateResumeLinks() {
+        const suffix = currentLang === 'pt' ? 'pt' : 'eng';
+        const docxLink = document.getElementById('resume-download-docx');
+        const pdfLink = document.getElementById('resume-download-pdf');
+        if (docxLink) {
+          docxLink.setAttribute(
+            'href',
+            `files/Carmem_Ferreira - Resume_${suffix}.docx`
+          );
+        }
+        if (pdfLink) {
+          pdfLink.setAttribute(
+            'href',
+            `files/Carmem_Ferreira - Resume_${suffix}.pdf`
+          );
+        }
       }
 
       function updateLanguageButtons() {

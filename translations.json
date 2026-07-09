@@ -198,7 +198,9 @@
     "footer-name": "Carmem Ferreira • Senior Product Designer",
     "footer-copy": "Design e Código focado em WCAG 2.1 • 2026",
     "footer-email-link": "E-mail",
-    "footer-linkedin": "Carmem Ferreira | LinkedIn"
+    "footer-linkedin": "Carmem Ferreira | LinkedIn",
+    "footer-resume-docx": "Salvar currículo em DOCX",
+    "footer-resume-pdf": "Salvar currículo em PDF"
   },
   "en": {
     "nav-about": "About",
@@ -399,6 +401,8 @@
     "footer-name": "Carmem Ferreira • Senior Product Designer",
     "footer-copy": "Design and Code focused on WCAG 2.1 • 2026",
     "footer-email-link": "Email",
-    "footer-linkedin": "Carmem Ferreira | LinkedIn"
+    "footer-linkedin": "Carmem Ferreira | LinkedIn",
+    "footer-resume-docx": "Save resume as a DOCX",
+    "footer-resume-pdf": "Save resume as a PDF"
   }
 }
