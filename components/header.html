@@ -55,13 +55,14 @@
       </li>
       <li>
         <div
-          class="flex gap-2 bg-zinc-100 p-1 rounded-full"
+          class="lang-switch relative flex gap-2 bg-zinc-100 p-1 rounded-full"
           role="group"
           aria-label="Selecionar idioma"
         >
+          <span class="lang-switch-thumb" aria-hidden="true"></span>
           <button
             onclick="setLanguage('pt')"
-            class="px-2 py-1 rounded-full hover:bg-white text-xs font-bold text-zinc-900 transition-all"
+            class="lang-btn px-2 py-1 rounded-full text-xs font-bold text-zinc-900 transition-colors"
             lang="pt"
             aria-label="Mudar idioma para Português"
           >
@@ -69,7 +70,7 @@
           </button>
           <button
             onclick="setLanguage('en')"
-            class="px-2 py-1 rounded-full hover:bg-white text-xs font-bold text-zinc-900 transition-all"
+            class="lang-btn px-2 py-1 rounded-full text-xs font-bold text-zinc-900 transition-colors"
             lang="en"
             aria-label="Switch language to English"
           >
@@ -82,13 +83,14 @@
     <!-- Mobile: language buttons + hamburger -->
     <div class="flex md:hidden items-center gap-3">
       <div
-        class="flex gap-2 bg-zinc-100 p-1 rounded-full"
+        class="lang-switch relative flex gap-2 bg-zinc-100 p-1 rounded-full"
         role="group"
         aria-label="Selecionar idioma"
       >
+        <span class="lang-switch-thumb" aria-hidden="true"></span>
         <button
           onclick="setLanguage('pt')"
-          class="px-2 py-1 rounded-full hover:bg-white text-xs font-bold text-zinc-900 transition-all"
+          class="lang-btn px-2 py-1 rounded-full text-xs font-bold text-zinc-900 transition-colors"
           lang="pt"
           aria-label="Mudar idioma para Português"
         >
@@ -96,7 +98,7 @@
         </button>
         <button
           onclick="setLanguage('en')"
-          class="px-2 py-1 rounded-full hover:bg-white text-xs font-bold text-zinc-900 transition-all"
+          class="lang-btn px-2 py-1 rounded-full text-xs font-bold text-zinc-900 transition-colors"
           lang="en"
           aria-label="Switch language to English"
         >

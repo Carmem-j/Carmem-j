@@ -175,9 +175,27 @@
         color: #3f3f46;
       }
 
+      /* Language switch (efeito de toggle deslizante) */
+      .lang-switch {
+        isolation: isolate;
+      }
+      .lang-switch-thumb {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 32px;
+        height: 32px;
+        background-color: #18181b;
+        border-radius: 9999px;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(0);
+        z-index: 0;
+      }
+      .lang-switch-thumb.is-en {
+        transform: translateX(calc(32px + 0.5rem));
+      }
       /* Language button active state */
       .lang-btn-active {
-        background-color: black;
         color: white !important;
       }
 
@@ -189,6 +207,44 @@
       .resume-btn:hover {
         background-color: #ffffff;
         color: #18181b;
+      }
+
+      /* Botões da Hero */
+      .hero-btn-primary {
+        background-color: #18181b !important;
+        color: #ffffff !important;
+      }
+      .hero-btn-primary:hover {
+        background-color: #27272a !important;
+        transform: scale(1.05);
+      }
+      .hero-btn-secondary {
+        background-color: transparent !important;
+        color: #18181b !important;
+        border: 1px solid #18181b !important;
+      }
+      .hero-btn-secondary:hover {
+        background-color: #fafafa !important;
+        transform: scale(1.05);
+      }
+
+      /* Botões de idioma - área de toque mínima WCAG 2.2 (2.5.8) */
+      .lang-btn {
+        position: relative;
+        z-index: 1;
+        min-width: 32px;
+        min-height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Foco visível para navegação por teclado (WCAG 2.4.7) */
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
       }
 
       /* Respeito à preferência do usuário por movimento reduzido (WCAG 2.3.3) */
@@ -263,7 +319,8 @@
 
     <script>
       let translations = {};
-      let currentLang = localStorage.getItem('preferredLang') || 'pt';
+      const storedLang = localStorage.getItem('preferredLang');
+      let currentLang = storedLang === 'pt' || storedLang === 'en' ? storedLang : 'pt';
 
       async function initI18n() {
         const res = await fetch('translations.json');
@@ -292,11 +349,12 @@
       }
 
       function translatePage() {
+        const dict = translations[currentLang] || translations.pt || {};
         document.querySelectorAll('[data-i18n]').forEach((el) => {
           const key = el.getAttribute('data-i18n');
-          if (translations[currentLang][key]) {
+          if (dict[key]) {
             // Usa innerHTML para permitir renderizar o blockquote e tags que possam vir da tradução
-            el.innerHTML = translations[currentLang][key];
+            el.innerHTML = dict[key];
           }
         });
         document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
@@ -333,6 +391,10 @@
             }
             btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
           });
+
+        document.querySelectorAll('.lang-switch-thumb').forEach((thumb) => {
+          thumb.classList.toggle('is-en', currentLang === 'en');
+        });
       }
 
       function navigateTo(id) {
