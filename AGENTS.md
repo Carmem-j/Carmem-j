@@ -43,6 +43,7 @@ components/
   projects.html         Section id="projetos" — case entry buttons
   case-1.html           Case study page, replaces #app via HTMX
   case-2.html           Case study page, replaces #app via HTMX
+  case-3.html           Case study page, replaces #app via HTMX
   footer.html           Section id="contato" — always in DOM, NOT inside #app
 ```
 
@@ -232,6 +233,7 @@ CSS: visually hidden by default (`top: -40px`), revealed on `:focus` (`top: 0`).
 - All `<a>` links must have accessible text via content, `data-i18n`, or `title` attribute
 - All `<button>` elements must have accessible text via content, `data-i18n`, or `title` attribute
 - `<img>` elements must have descriptive `alt` text — never `alt=""` unless decorative
+- Case images use `<figure>` + `<figcaption data-i18n="...">`. Their alt text is translated via `data-i18n-alt="key"` (handled in `translatePage()`); the markup keeps `alt=""` only as a placeholder that JS fills in, and both `pt` and `en` must define the key. Always set `width`, `height` and `loading="lazy"`.
 - Empty `data-i18n` elements that are links/buttons MUST have a `title` attribute as fallback
 
 ### Language
