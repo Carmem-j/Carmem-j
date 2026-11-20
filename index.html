@@ -359,7 +359,7 @@
         updateLanguageButtons();
 
         // Handle direct URL with case hash (e.g. /#case-1)
-        const caseMatch = window.location.hash.match(/^#case-([1-3])$/);
+        const caseMatch = window.location.hash.match(/^#case-([1-4])$/);
         if (caseMatch) {
           htmx.ajax('GET', `components/case-${caseMatch[1]}.html`, {
             target: '#app',

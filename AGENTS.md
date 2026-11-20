@@ -44,6 +44,7 @@ components/
   case-1.html           Case study page, replaces #app via HTMX
   case-2.html           Case study page, replaces #app via HTMX
   case-3.html           Case study page, replaces #app via HTMX
+  case-4.html           Case study page, replaces #app via HTMX
   footer.html           Section id="contato" — always in DOM, NOT inside #app
 ```
 
