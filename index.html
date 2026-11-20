@@ -317,6 +317,36 @@
       hx-swap="outerHTML"
     ></div>
 
+    <dialog
+      id="lightbox"
+      class="m-0 p-0 w-screen h-screen max-w-none max-h-none bg-transparent backdrop:bg-black/90 open:flex items-center justify-center"
+    >
+      <button
+        type="button"
+        id="lightbox-close"
+        class="fixed top-4 right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-zinc-900 shadow-lg transition-colors hover:bg-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
+      >
+        <svg
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+        <span class="sr-only" data-i18n="lightbox-close"></span>
+      </button>
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="h-[88vh] w-[95vw] cursor-zoom-out object-contain"
+      />
+    </dialog>
+
     <script>
       let translations = {};
       const storedLang = localStorage.getItem('preferredLang');
@@ -450,6 +480,45 @@
         updateLanguageButtons();
         window.scrollTo(0, 0);
       });
+
+      function initLightbox() {
+        const dialog = document.getElementById('lightbox');
+        const dialogImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('lightbox-close');
+        if (!dialog || !dialogImg || !closeBtn) return;
+        if (typeof dialog.showModal !== 'function') return;
+        let opener = null;
+
+        // Delegação de eventos: funciona para imagens carregadas via HTMX
+        document.addEventListener('click', (event) => {
+          const trigger = event.target.closest('[data-lightbox]');
+          if (trigger) {
+            const img = trigger.querySelector('img');
+            if (!img) return;
+            opener = trigger;
+            dialogImg.src = img.currentSrc || img.src;
+            dialogImg.alt = img.alt;
+            document.documentElement.classList.add('overflow-hidden');
+            dialog.showModal();
+            return;
+          }
+          // Clique no fundo escuro ou na própria imagem fecha o modal
+          if (event.target === dialog || event.target === dialogImg) {
+            dialog.close();
+          }
+        });
+
+        closeBtn.addEventListener('click', () => dialog.close());
+
+        // O evento "close" também dispara ao pressionar Esc
+        dialog.addEventListener('close', () => {
+          document.documentElement.classList.remove('overflow-hidden');
+          dialogImg.removeAttribute('src');
+          if (opener) opener.focus();
+        });
+      }
+
+      initLightbox();
 
       window.onload = initI18n;
     </script>
