@@ -344,7 +344,13 @@
     "case-cta-title": "Gostou do que viu?",
     "case-cta-btn": "Que tal um café virtual?",
     "menu-open": "Abrir menu de navegação",
-    "menu-close": "Fechar menu de navegação"
+    "menu-close": "Fechar menu de navegação",
+    "skip-link": "Pular para o conteúdo principal",
+    "nav-label": "Navegação principal",
+    "nav-mobile-label": "Menu de navegação",
+    "lightbox-label": "Imagem ampliada",
+    "new-tab": " (abre em nova aba)",
+    "page-title": "Carmem Ferreira | Senior Product Designer — Visualização de Dados & Acessibilidade"
   },
   "en": {
     "nav-about": "About",
@@ -691,6 +697,12 @@
     "case-cta-title": "Like what you see?",
     "case-cta-btn": "How about a virtual coffee?",
     "menu-open": "Open navigation menu",
-    "menu-close": "Close navigation menu"
+    "menu-close": "Close navigation menu",
+    "skip-link": "Skip to main content",
+    "nav-label": "Main navigation",
+    "nav-mobile-label": "Navigation menu",
+    "lightbox-label": "Enlarged image",
+    "new-tab": " (opens in a new tab)",
+    "page-title": "Carmem Ferreira | Senior Product Designer — Data Visualization & Accessibility"
   }
 }

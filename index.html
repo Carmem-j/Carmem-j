@@ -129,7 +129,7 @@
       </defs>
     </svg>
 
-    <a href="#main-content" class="skip">Pular para o conteúdo principal</a>
+    <a href="#main-content" class="skip" data-i18n="skip-link">Pular para o conteúdo principal</a>
 
     <div
       hx-get="components/header.html"
@@ -168,7 +168,7 @@
       hx-swap="outerHTML"
     ></div>
 
-    <dialog id="lightbox" aria-label="Imagem ampliada">
+    <dialog id="lightbox" aria-label="Imagem ampliada" data-i18n-label="lightbox-label">
       <button type="button" id="lightbox-close" class="lb-close">
         <svg
           width="24"
@@ -215,7 +215,7 @@
           sessionStorage.removeItem('scrollAfterLoad');
           setTimeout(() => {
             const el = document.getElementById(scrollTarget);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            if (el) el.scrollIntoView({ behavior: scrollBehavior() });
           }, 400);
         }
       }
@@ -240,10 +240,34 @@
             el.setAttribute('alt', dict[key]);
           }
         });
+        document.querySelectorAll('[data-i18n-label]').forEach((el) => {
+          const key = el.getAttribute('data-i18n-label');
+          if (dict[key]) {
+            el.setAttribute('aria-label', dict[key]);
+          }
+        });
         document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
+        updateDocumentTitle();
         updateResumeLinks();
         buildToc();
         syncMenuToggle();
+      }
+
+      // Título da aba: muda por idioma e por case (WCAG 2.4.2)
+      function updateDocumentTitle() {
+        const caseTitle = document.querySelector('.case-head h1');
+        if (caseTitle && caseTitle.textContent.trim()) {
+          document.title = `${caseTitle.textContent.trim()} | Carmem Ferreira`;
+        } else if (t('page-title')) {
+          document.title = t('page-title');
+        }
+      }
+
+      // Respeita prefers-reduced-motion também na rolagem feita por JS
+      function scrollBehavior() {
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'auto'
+          : 'smooth';
       }
 
       function updateResumeLinks() {
@@ -273,7 +297,7 @@
       function navigateTo(id) {
         const el = document.getElementById(id);
         if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
+          el.scrollIntoView({ behavior: scrollBehavior() });
         } else {
           sessionStorage.setItem('scrollAfterLoad', id);
           window.location.href = window.location.pathname;
@@ -351,7 +375,7 @@
         if (!link) return;
         event.preventDefault();
         const target = document.getElementById(link.dataset.go);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (target) target.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
       });
 
       /* ---------- confete de formas (determinístico: layout estável) ---------- */
@@ -451,11 +475,23 @@
         }
       });
 
-      document.body.addEventListener('htmx:afterOnLoad', () => {
+      document.body.addEventListener('htmx:afterOnLoad', (event) => {
         translatePage();
         updateLanguageButtons();
         initConfetti();
         window.scrollTo(0, 0);
+
+        // Ao abrir um case, o botão clicado some do DOM: move o foco para o
+        // título do case para que teclado e leitores de tela não se percam.
+        const path =
+          (event.detail && event.detail.pathInfo && event.detail.pathInfo.requestPath) || '';
+        if (path.includes('components/case-')) {
+          const h1 = document.querySelector('.case-head h1');
+          if (h1) {
+            h1.setAttribute('tabindex', '-1');
+            h1.focus({ preventScroll: true });
+          }
+        }
       });
 
       function initLightbox() {

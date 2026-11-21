@@ -247,6 +247,13 @@ CSS (`.skip`): visually hidden by default, revealed on `:focus`.
 - `<html lang="...">` must match `currentLang`: `pt-BR` or `en`
 - Updated in `translatePage()` on every language switch
 
+- `aria-label` values are translated with `data-i18n-label="key"` (handled in `translatePage()`); never hardcode a single language in `aria-label`, skip link or dialog label
+- `document.title` follows language and case (`updateDocumentTitle()`, key `page-title`)
+- After a case loads via HTMX the focus moves to the case `<h1>` (`tabindex="-1"`); do not let focus fall back to `<body>`
+- JS scrolling must use `scrollBehavior()` (respects `prefers-reduced-motion`); no animation may run longer than 5s without a way to stop it
+- Links with the same visible text (e.g. "Ler case completo") need `aria-describedby` pointing to the card heading; links with `target="_blank"` include a `sr-only` "opens in a new tab" notice (`new-tab` key)
+- Decorative shapes must not sit behind text: confetti is masked away from text on mobile
+
 ### Color contrast
 
 - Body text `--fg` and secondary `--muted` on `--bg`/`--surface` pass AA; dark text `--ink` on mint buttons

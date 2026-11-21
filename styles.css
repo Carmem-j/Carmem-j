@@ -440,7 +440,6 @@ nav.main a:hover {
   inset: -6%;
   border-radius: 50%;
   border: 2px dashed var(--line);
-  animation: spin 60s linear infinite;
 }
 .portrait img.av {
   position: relative;
@@ -1305,7 +1304,7 @@ footer .row {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--nc);
+  color: color-mix(in srgb, var(--nc) 65%, #fff);
   margin-bottom: 8px;
 }
 .next b {
@@ -1518,5 +1517,22 @@ dialog#lightbox::backdrop {
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+/* Foco programático (título do case após navegação): sem anel, pois não é controle */
+h1[tabindex='-1']:focus {
+  outline: none;
+}
+
+/* Mobile: formas decorativas não ficam atrás de texto (WCAG 1.4.3) */
+@media (max-width: 960px) {
+  .hero .confetti {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 16%, transparent 28%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 16%, transparent 28%);
+  }
+  .contact .confetti {
+    -webkit-mask-image: radial-gradient(ellipse at center, transparent 62%, #000 100%);
+    mask-image: radial-gradient(ellipse at center, transparent 62%, #000 100%);
   }
 }
