@@ -1,177 +1,143 @@
-<header
-  class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-zinc-100 z-50"
->
-  <nav
-    class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between"
-    aria-label="Navegação Principal"
-  >
+<header class="top">
+  <div class="wrap bar">
     <a
-      href="#sobre"
+      class="logo"
+      href="#top"
       onclick="
-        navigateTo('sobre');
+        navigateTo('top');
         return false;
       "
-      class="text-xl font-bold tracking-tight uppercase"
       title="Carmem Ferreira"
     >
-      CARMEM FERREIRA.
+      <img
+        src="images/avatar-96.png"
+        alt=""
+        width="34"
+        height="34"
+        decoding="async"
+      />
+      <span class="nm">Carmem Ferreira<span class="dot">.</span></span>
     </a>
 
-    <!-- Desktop nav -->
-    <ul
-      class="hidden md:flex space-x-8 text-sm font-medium text-zinc-500 items-center"
-    >
-      <li>
-        <a
-          href="#sobre"
-          onclick="
-            navigateTo('sobre');
-            return false;
-          "
-          title="Sobre"
-          class="hover:text-black transition-colors"
-          data-i18n="nav-about"
-        ></a>
-      </li>
-      <li>
-        <a
-          href="#projetos"
-          onclick="
-            navigateTo('projetos');
-            return false;
-          "
-          title="Projetos"
-          class="hover:text-black transition-colors"
-          data-i18n="nav-projects"
-        ></a>
-      </li>
-      <li>
-        <a
-          href="#contato"
-          class="hover:text-black transition-colors"
-          data-i18n="nav-contact"
-          title="Contato"
-        ></a>
-      </li>
-      <li>
-        <div
-          class="lang-switch relative flex gap-2 bg-zinc-100 p-1 rounded-full"
-          role="group"
-          aria-label="Selecionar idioma"
-        >
-          <span class="lang-switch-thumb" aria-hidden="true"></span>
-          <button
-            onclick="setLanguage('pt')"
-            class="lang-btn px-2 py-1 rounded-full text-xs font-bold text-zinc-900 transition-colors"
-            lang="pt"
-            aria-label="Mudar idioma para Português"
-          >
-            PT
-          </button>
-          <button
-            onclick="setLanguage('en')"
-            class="lang-btn px-2 py-1 rounded-full text-xs font-bold text-zinc-900 transition-colors"
-            lang="en"
-            aria-label="Switch language to English"
-          >
-            EN
-          </button>
-        </div>
-      </li>
-    </ul>
+    <nav class="main" aria-label="Navegação Principal">
+      <a
+        href="#sobre"
+        onclick="
+          navigateTo('sobre');
+          return false;
+        "
+        title="Sobre"
+        data-i18n="nav-about"
+      ></a>
+      <a
+        href="#projetos"
+        onclick="
+          navigateTo('projetos');
+          return false;
+        "
+        title="Projetos"
+        data-i18n="nav-projects"
+      ></a>
+      <a href="#contato" title="Contato" data-i18n="nav-contact"></a>
 
-    <!-- Mobile: language buttons + hamburger -->
-    <div class="flex md:hidden items-center gap-3">
-      <div
-        class="lang-switch relative flex gap-2 bg-zinc-100 p-1 rounded-full"
-        role="group"
-        aria-label="Selecionar idioma"
-      >
-        <span class="lang-switch-thumb" aria-hidden="true"></span>
+      <div class="lang" role="group" aria-label="Selecionar idioma">
         <button
+          type="button"
           onclick="setLanguage('pt')"
-          class="lang-btn px-2 py-1 rounded-full text-xs font-bold text-zinc-900 transition-colors"
           lang="pt"
           aria-label="Mudar idioma para Português"
+          aria-pressed="true"
         >
           PT
         </button>
         <button
+          type="button"
           onclick="setLanguage('en')"
-          class="lang-btn px-2 py-1 rounded-full text-xs font-bold text-zinc-900 transition-colors"
           lang="en"
           aria-label="Switch language to English"
+          aria-pressed="false"
         >
           EN
         </button>
       </div>
+
       <button
         type="button"
+        class="burger"
+        id="mobile-menu-toggle"
         onclick="toggleMobileMenu()"
-        aria-label="Abrir menu de navegação"
         aria-controls="mobile-menu"
         aria-expanded="false"
-        id="mobile-menu-toggle"
-        class="p-2 rounded-md hover:bg-zinc-100 transition-colors"
+        aria-label="Abrir menu de navegação"
       >
         <svg
-          width="24"
-          height="24"
+          class="i-menu"
+          viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
+          stroke-width="2.2"
+          stroke-linecap="round"
           aria-hidden="true"
         >
-          <path d="M3 6h18M3 12h18M3 18h18" />
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg
+          class="i-close"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M6 6l12 12M18 6 6 18" />
         </svg>
       </button>
-    </div>
-  </nav>
+    </nav>
+  </div>
 
-  <!-- Mobile menu panel -->
-  <div
-    id="mobile-menu"
-    class="hidden md:hidden border-t border-zinc-100 bg-white"
-  >
-    <ul
-      class="flex flex-col px-6 py-4 space-y-4 text-base font-medium text-zinc-700"
-    >
-      <li>
-        <a
-          href="#sobre"
-          onclick="
-            closeMobileMenu();
-            navigateTo('sobre');
-            return false;
-          "
-          title="Sobre"
-          class="block py-2 hover:text-black transition-colors"
-          data-i18n="nav-about"
-        ></a>
-      </li>
-      <li>
-        <a
-          href="#projetos"
-          onclick="
-            closeMobileMenu();
-            navigateTo('projetos');
-            return false;
-          "
-          title="Projetos"
-          class="block py-2 hover:text-black transition-colors"
-          data-i18n="nav-projects"
-        ></a>
-      </li>
-      <li>
-        <a
-          href="#contato"
-          onclick="closeMobileMenu();"
-          class="block py-2 hover:text-black transition-colors"
-          data-i18n="nav-contact"
-          title="Contato"
-        ></a>
-      </li>
-    </ul>
+  <!-- Painel do menu mobile -->
+  <div id="mobile-menu" class="mobile-menu" hidden>
+    <div class="wrap">
+      <ul>
+        <li>
+          <a
+            href="#sobre"
+            onclick="
+              closeMobileMenu();
+              navigateTo('sobre');
+              return false;
+            "
+            title="Sobre"
+          >
+            <svg class="c-mint" aria-hidden="true"><use href="#sh-circle" /></svg>
+            <span data-i18n="nav-about"></span>
+            <svg class="go" aria-hidden="true"><use href="#i-arrow" /></svg>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#projetos"
+            onclick="
+              closeMobileMenu();
+              navigateTo('projetos');
+              return false;
+            "
+            title="Projetos"
+          >
+            <svg class="c-pink" aria-hidden="true"><use href="#sh-tri" /></svg>
+            <span data-i18n="nav-projects"></span>
+            <svg class="go" aria-hidden="true"><use href="#i-arrow" /></svg>
+          </a>
+        </li>
+        <li>
+          <a href="#contato" onclick="closeMobileMenu();" title="Contato">
+            <svg class="c-orange" aria-hidden="true"><use href="#sh-square" /></svg>
+            <span data-i18n="nav-contact"></span>
+            <svg class="go" aria-hidden="true"><use href="#i-arrow" /></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </header>

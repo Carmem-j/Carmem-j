@@ -2,13 +2,15 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#1E1B25" />
+    <meta name="color-scheme" content="dark" />
     <title>Carmem Ferreira | Senior Product Designer — Visualização de Dados & Acessibilidade</title>
 
     <!-- SEO -->
     <meta
       name="description"
-      content="Senior Product Designer especialista em visualização de dados e acessibilidade (WCAG 2.1) para sistemas críticos B2B. Portfólio com cases de Óleo & Gás, Seguros e Energia."
+      content="Senior Product Designer com 6+ anos em produtos SaaS B2B de Óleo & Gás, Seguros e Saúde. Especialista em visualização de dados e acessibilidade (WCAG 2.1/2.2), do discovery ao delivery."
     />
     <meta name="author" content="Carmem Ferreira" />
     <meta
@@ -31,15 +33,17 @@
     />
     <meta
       property="og:description"
-      content="Especialista em visualização de dados e acessibilidade para sistemas críticos. Cases com Petrobras, BP, Exxon, Pioneer, Ocyan e mais."
+      content="Produtos SaaS B2B de alto impacto, da arquitetura à interface. Especialista em visualização de dados e acessibilidade (WCAG 2.2)."
     />
     <meta
       property="og:image"
-      content="https://carmem-ferreira.des.br/images/profile.jpg"
+      content="https://carmem-ferreira.des.br/images/og-image.jpg"
     />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Carmem Ferreira sorrindo, com cabelo cacheado rosa, óculos e jaqueta preta"
+      content="Carmem Ferreira, Senior Product Designer, com sua ilustração de cabelo cacheado rosa e roxo sobre fundo escuro com formas geométricas coloridas"
     />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:locale:alternate" content="en_US" />
@@ -52,11 +56,11 @@
     />
     <meta
       name="twitter:description"
-      content="Especialista em visualização de dados e acessibilidade para sistemas críticos B2B."
+      content="Produtos SaaS B2B de alto impacto, da arquitetura à interface. Especialista em visualização de dados e acessibilidade."
     />
     <meta
       name="twitter:image"
-      content="https://carmem-ferreira.des.br/images/profile.jpg"
+      content="https://carmem-ferreira.des.br/images/og-image.jpg"
     />
 
     <!-- JSON-LD structured data -->
@@ -66,7 +70,7 @@
         "@type": "Person",
         "name": "Carmem Ferreira",
         "jobTitle": "Senior Product Designer",
-        "description": "Senior Product Designer especialista em visualização de dados e acessibilidade (WCAG 2.1) para sistemas críticos B2B.",
+        "description": "Senior Product Designer especialista em visualização de dados e acessibilidade (WCAG 2.1/2.2) para produtos SaaS B2B de Óleo & Gás, Seguros e Saúde.",
         "url": "https://carmem-ferreira.des.br/",
         "image": "https://carmem-ferreira.des.br/images/profile.jpg",
         "email": "carmemjeovana@gmail.com",
@@ -74,7 +78,7 @@
         "knowsAbout": [
           "Data Visualization",
           "Accessibility",
-          "WCAG 2.1",
+          "WCAG 2.2",
           "Product Design",
           "UX Design",
           "B2B Systems",
@@ -83,187 +87,18 @@
       }
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --bg-primary: #ffffff;
-        --text-primary: #18181b;
-        --accent: #2563eb;
-      }
-      body {
-        font-family: 'Inter', sans-serif;
-        scroll-behavior: smooth;
-        background-color: var(--bg-primary);
-        color: var(--text-primary);
-      }
-
-      /* Acessibilidade Restaurada */
-      .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 0;
-        background: var(--accent);
-        color: white;
-        padding: 8px;
-        z-index: 100;
-        transition: top 0.3s;
-      }
-      .skip-link:focus {
-        top: 0;
-      }
-
-      /* Estilos do Carrossel Restaurados */
-      .carousel-track {
-        display: flex;
-        width: max-content;
-        animation: scroll 40s linear infinite;
-        align-items: center;
-      }
-      .carousel-track:hover {
-        animation-play-state: paused;
-      }
-      @keyframes scroll {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
-      }
-
-      /* Case typography using CSS (no @apply needed for descendant selectors) */
-      .case-text h2 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #18181b;
-        margin-top: 3rem;
-        margin-bottom: 1.5rem;
-        text-transform: uppercase;
-        letter-spacing: -0.025em;
-      }
-      .case-text h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #18181b;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-      }
-      .case-text p {
-        color: #52525b;
-        line-height: 1.625;
-        margin-bottom: 1.5rem;
-      }
-      .case-text ul {
-        list-style-type: disc;
-        padding-left: 1.5rem;
-        margin-bottom: 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        color: #52525b;
-      }
-      .case-text blockquote {
-        border-left: 4px solid #2563eb;
-        padding-left: 1.5rem;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        font-style: italic;
-        background-color: #f4f4f5;
-        border-radius: 0 0.5rem 0.5rem 0;
-        margin-bottom: 2rem;
-        color: #3f3f46;
-      }
-
-      /* Language switch (efeito de toggle deslizante) */
-      .lang-switch {
-        isolation: isolate;
-      }
-      .lang-switch-thumb {
-        position: absolute;
-        top: 4px;
-        left: 4px;
-        width: 32px;
-        height: 32px;
-        background-color: #18181b;
-        border-radius: 9999px;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        transform: translateX(0);
-        z-index: 0;
-      }
-      .lang-switch-thumb.is-en {
-        transform: translateX(calc(32px + 0.5rem));
-      }
-      /* Language button active state */
-      .lang-btn-active {
-        color: white !important;
-      }
-
-      /* Botões da Hero */
-      .hero-btn-primary {
-        background-color: #18181b !important;
-        color: #ffffff !important;
-      }
-      .hero-btn-primary:hover {
-        background-color: #27272a !important;
-        transform: scale(1.05);
-      }
-      .hero-btn-secondary {
-        background-color: transparent !important;
-        color: #18181b !important;
-        border: 1px solid #18181b !important;
-      }
-      .hero-btn-secondary:hover {
-        background-color: #fafafa !important;
-        transform: scale(1.05);
-      }
-
-      /* Botões de idioma - área de toque mínima WCAG 2.2 (2.5.8) */
-      .lang-btn {
-        position: relative;
-        z-index: 1;
-        min-width: 32px;
-        min-height: 32px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* Foco visível para navegação por teclado (WCAG 2.4.7) */
-      a:focus-visible,
-      button:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
-        border-radius: 4px;
-      }
-
-      /* Respeito à preferência do usuário por movimento reduzido (WCAG 2.3.3) */
-      @media (prefers-reduced-motion: reduce) {
-        .carousel-track {
-          animation: none;
-        }
-        body {
-          scroll-behavior: auto;
-        }
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="antialiased">
+  <body>
     <noscript>
-      <div
-        class="fixed top-0 left-0 right-0 p-4 bg-yellow-100 text-zinc-900 text-center z-[9999] border-b border-yellow-300"
-      >
+      <div class="noscript">
         <strong>JavaScript desabilitado.</strong> Este site precisa de
         JavaScript para carregar componentes e suportar tradução. Por favor,
         habilite-o no seu navegador. /
@@ -273,9 +108,28 @@
       </div>
     </noscript>
 
-    <a href="#main-content" class="skip-link"
-      >Pular para o conteúdo principal</a
-    >
+    <!-- Biblioteca de formas e ícones (usada via <use href="#id">) -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="sh-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="currentColor" /></symbol>
+        <symbol id="sh-square" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" fill="currentColor" /></symbol>
+        <symbol id="sh-tri" viewBox="0 0 24 24"><path d="M12 3 22 20H2z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></symbol>
+        <symbol id="sh-moon" viewBox="0 0 24 24"><path d="M15 2.5A10 10 0 1 0 15 21.5 8 8 0 0 1 15 2.5Z" fill="currentColor" /></symbol>
+        <symbol id="sh-flower" viewBox="-12 -12 24 24">
+          <g fill="currentColor">
+            <rect x="-2.6" y="-10" width="5.2" height="20" rx="2.6" />
+            <rect x="-2.6" y="-10" width="5.2" height="20" rx="2.6" transform="rotate(60)" />
+            <rect x="-2.6" y="-10" width="5.2" height="20" rx="2.6" transform="rotate(120)" />
+          </g>
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+        <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M12 11v5.5M12 7.7v.1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" /></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></symbol>
+      </defs>
+    </svg>
+
+    <a href="#main-content" class="skip">Pular para o conteúdo principal</a>
 
     <div
       hx-get="components/header.html"
@@ -288,21 +142,24 @@
         <div
           hx-get="components/hero.html"
           hx-trigger="load"
-          hx-swap="innerHTML"
+          hx-swap="outerHTML"
+        ></div>
+        <div
+          hx-get="components/impact.html"
+          hx-trigger="load"
+          hx-swap="outerHTML"
+        ></div>
+        <div
+          hx-get="components/projects.html"
+          hx-trigger="load"
+          hx-swap="outerHTML"
+        ></div>
+        <div
+          hx-get="components/about.html"
+          hx-trigger="load"
+          hx-swap="outerHTML"
         ></div>
       </main>
-
-      <div
-        hx-get="components/brands.html"
-        hx-trigger="load"
-        hx-swap="outerHTML"
-      ></div>
-
-      <div
-        hx-get="components/projects.html"
-        hx-trigger="load"
-        hx-swap="outerHTML"
-      ></div>
     </div>
 
     <div
@@ -311,15 +168,8 @@
       hx-swap="outerHTML"
     ></div>
 
-    <dialog
-      id="lightbox"
-      class="m-0 p-0 w-screen h-screen max-w-none max-h-none bg-transparent backdrop:bg-black/90 open:flex items-center justify-center"
-    >
-      <button
-        type="button"
-        id="lightbox-close"
-        class="fixed top-4 right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-zinc-900 shadow-lg transition-colors hover:bg-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
-      >
+    <dialog id="lightbox" aria-label="Imagem ampliada">
+      <button type="button" id="lightbox-close" class="lb-close">
         <svg
           width="24"
           height="24"
@@ -333,18 +183,16 @@
         </svg>
         <span class="sr-only" data-i18n="lightbox-close"></span>
       </button>
-      <img
-        id="lightbox-img"
-        src=""
-        alt=""
-        class="h-[88vh] w-[95vw] cursor-zoom-out object-contain"
-      />
+      <img id="lightbox-img" src="" alt="" />
     </dialog>
 
     <script>
       let translations = {};
       const storedLang = localStorage.getItem('preferredLang');
       let currentLang = storedLang === 'pt' || storedLang === 'en' ? storedLang : 'pt';
+
+      const TOC_ICONS = ['sh-circle', 'sh-square', 'sh-tri', 'sh-flower'];
+      const CONFETTI_COLORS = ['#7B3FF2', '#FF5C9D', '#E8A0F0', '#3FE3C2', '#FFA93B', '#52C8F0', '#A58BFF', '#B0448B'];
 
       async function initI18n() {
         const res = await fetch('translations.json');
@@ -372,12 +220,17 @@
         }
       }
 
+      function t(key) {
+        const dict = translations[currentLang] || translations.pt || {};
+        return dict[key] || '';
+      }
+
       function translatePage() {
         const dict = translations[currentLang] || translations.pt || {};
         document.querySelectorAll('[data-i18n]').forEach((el) => {
           const key = el.getAttribute('data-i18n');
           if (dict[key]) {
-            // Usa innerHTML para permitir renderizar o blockquote e tags que possam vir da tradução
+            // Usa innerHTML para permitir tags (strong, span.hl, blockquote) nos textos
             el.innerHTML = dict[key];
           }
         });
@@ -389,6 +242,8 @@
         });
         document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
         updateResumeLinks();
+        buildToc();
+        syncMenuToggle();
       }
 
       function updateResumeLinks() {
@@ -410,18 +265,9 @@
         document
           .querySelectorAll('button[onclick*="setLanguage"]')
           .forEach((btn) => {
-            btn.classList.remove('lang-btn-active');
-            const btnLang = btn.textContent.trim().toLowerCase();
-            const isActive = btnLang === currentLang;
-            if (isActive) {
-              btn.classList.add('lang-btn-active');
-            }
+            const isActive = btn.textContent.trim().toLowerCase() === currentLang;
             btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
           });
-
-        document.querySelectorAll('.lang-switch-thumb').forEach((thumb) => {
-          thumb.classList.toggle('is-en', currentLang === 'en');
-        });
       }
 
       function navigateTo(id) {
@@ -441,34 +287,174 @@
         updateLanguageButtons();
       }
 
+      /* ---------- menu hambúrguer (mobile) ---------- */
+      function isMenuOpen() {
+        const menu = document.getElementById('mobile-menu');
+        return !!menu && !menu.hidden;
+      }
+
+      function syncMenuToggle() {
+        const toggle = document.getElementById('mobile-menu-toggle');
+        if (!toggle) return;
+        const open = isMenuOpen();
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        const label = t(open ? 'menu-close' : 'menu-open');
+        if (label) toggle.setAttribute('aria-label', label);
+      }
+
       function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu');
-        const toggle = document.getElementById('mobile-menu-toggle');
-        if (!menu || !toggle) return;
-        const isOpen = !menu.classList.contains('hidden');
-        if (isOpen) {
-          menu.classList.add('hidden');
-          toggle.setAttribute('aria-expanded', 'false');
-          toggle.setAttribute('aria-label', 'Abrir menu de navegação');
-        } else {
-          menu.classList.remove('hidden');
-          toggle.setAttribute('aria-expanded', 'true');
-          toggle.setAttribute('aria-label', 'Fechar menu de navegação');
+        if (!menu) return;
+        menu.hidden = !menu.hidden;
+        syncMenuToggle();
+      }
+
+      function closeMobileMenu(returnFocus) {
+        const menu = document.getElementById('mobile-menu');
+        if (!menu || menu.hidden) return;
+        menu.hidden = true;
+        syncMenuToggle();
+        if (returnFocus) {
+          const toggle = document.getElementById('mobile-menu-toggle');
+          if (toggle) toggle.focus();
         }
       }
 
-      function closeMobileMenu() {
-        const menu = document.getElementById('mobile-menu');
-        const toggle = document.getElementById('mobile-menu-toggle');
-        if (!menu || !toggle) return;
-        menu.classList.add('hidden');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Abrir menu de navegação');
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && isMenuOpen()) closeMobileMenu(true);
+      });
+      document.addEventListener('click', (event) => {
+        if (isMenuOpen() && !event.target.closest('header.top')) closeMobileMenu();
+      });
+      window.matchMedia('(min-width: 641px)').addEventListener('change', (e) => {
+        if (e.matches) closeMobileMenu();
+      });
+
+      /* ---------- índice lateral dos cases ---------- */
+      function buildToc() {
+        const holder = document.querySelector('[data-toc]');
+        if (!holder) return;
+        const sections = document.querySelectorAll('.case-content > section.cs');
+        let html = '';
+        sections.forEach((section, i) => {
+          const h2 = section.querySelector('h2');
+          if (!h2) return;
+          if (!section.id) section.id = `cs-${i + 1}`;
+          const icon = TOC_ICONS[i % TOC_ICONS.length];
+          html += `<a href="#${section.id}" data-go="${section.id}"><svg aria-hidden="true"><use href="#${icon}"></use></svg><span>${h2.textContent}</span></a>`;
+        });
+        holder.innerHTML = html;
       }
+
+      document.addEventListener('click', (event) => {
+        const link = event.target.closest('a[data-go]');
+        if (!link) return;
+        event.preventDefault();
+        const target = document.getElementById(link.dataset.go);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      /* ---------- confete de formas (determinístico: layout estável) ---------- */
+      function initConfetti() {
+        const NS = 'http://www.w3.org/2000/svg';
+        const rng = (seed) => {
+          let s = seed;
+          return () => {
+            s = (s * 1664525 + 1013904223) % 4294967296;
+            return s / 4294967296;
+          };
+        };
+        const mk = (tag, attrs) => {
+          const node = document.createElementNS(NS, tag);
+          Object.entries(attrs).forEach(([k, v]) => node.setAttribute(k, v));
+          return node;
+        };
+        document.querySelectorAll('[data-confetti]').forEach((el) => {
+          if (el.firstElementChild) return;
+          const hero = el.dataset.confetti === 'hero';
+          const r = rng(hero ? 7 : 21);
+          const count = hero ? 46 : 38;
+          const W = 1200;
+          const H = 700;
+          const svg = mk('svg', { viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: 'xMidYMid slice' });
+          for (let i = 0; i < count; i++) {
+            const x = r() * W;
+            const y = r() * H;
+            const s = 16 + r() * 34;
+            const rot = r() * 360;
+            const col = CONFETTI_COLORS[Math.floor(r() * CONFETTI_COLORS.length)];
+            const kind = Math.floor(r() * 6);
+            let fill = r() > 0.72;
+            const g = mk('g', { transform: `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(0)})` });
+            let node;
+            if (kind === 0) {
+              node = mk('rect', { x: -s / 2, y: -s / 2, width: s, height: s, rx: 3 });
+            } else if (kind === 1) {
+              node = mk('path', { d: `M0 ${-s * 0.6} L${s * 0.6} ${s * 0.5} L${-s * 0.6} ${s * 0.5}Z`, 'stroke-linejoin': 'round' });
+            } else if (kind === 2) {
+              node = mk('circle', { r: s / 2 });
+            } else if (kind === 3) {
+              const a = s / 2;
+              node = mk('path', { d: `M${a * 0.3} ${-a}A${a} ${a} 0 1 0 ${a * 0.3} ${a}A${a * 0.8} ${a * 0.8} 0 0 1 ${a * 0.3} ${-a}Z` });
+              fill = true;
+            } else if (kind === 4) {
+              node = mk('g', {});
+              fill = true;
+              const w = s * 0.22;
+              for (let k = 0; k < 3; k++) {
+                node.appendChild(mk('rect', { x: -w / 2, y: -s / 2, width: w, height: s, rx: w / 2, transform: `rotate(${k * 60})`, fill: col }));
+              }
+            } else {
+              node = mk('rect', { x: -s * 0.22, y: -s * 0.22, width: s * 0.44, height: s * 0.44, rx: 2 });
+              fill = true;
+            }
+            if (kind !== 4) {
+              if (fill) {
+                node.setAttribute('fill', col);
+              } else {
+                node.setAttribute('fill', 'none');
+                node.setAttribute('stroke', col);
+                node.setAttribute('stroke-width', '2.5');
+              }
+            }
+            g.appendChild(node);
+            svg.appendChild(g);
+          }
+          el.appendChild(svg);
+        });
+      }
+
+      /* ---------- copiar e-mail ---------- */
+      document.addEventListener('click', (event) => {
+        const btn = event.target.closest('#copy-btn');
+        if (!btn) return;
+        const addr = document.getElementById('mail-addr');
+        const label = document.getElementById('copy-lbl');
+        if (!addr || !label) return;
+        const done = () => {
+          label.textContent = t('copy-done');
+          setTimeout(() => {
+            label.textContent = t('copy-email');
+          }, 1800);
+        };
+        const fallback = () => {
+          const range = document.createRange();
+          range.selectNodeContents(addr);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        };
+        try {
+          navigator.clipboard.writeText(addr.textContent.trim()).then(done, fallback);
+        } catch (e) {
+          fallback();
+        }
+      });
 
       document.body.addEventListener('htmx:afterOnLoad', () => {
         translatePage();
         updateLanguageButtons();
+        initConfetti();
         window.scrollTo(0, 0);
       });
 
@@ -489,7 +475,7 @@
             opener = trigger;
             dialogImg.src = img.currentSrc || img.src;
             dialogImg.alt = img.alt;
-            document.documentElement.classList.add('overflow-hidden');
+            document.documentElement.classList.add('no-scroll');
             dialog.showModal();
             return;
           }
@@ -503,7 +489,7 @@
 
         // O evento "close" também dispara ao pressionar Esc
         dialog.addEventListener('close', () => {
-          document.documentElement.classList.remove('overflow-hidden');
+          document.documentElement.classList.remove('no-scroll');
           dialogImg.removeAttribute('src');
           if (opener) opener.focus();
         });

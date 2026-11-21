@@ -1,183 +1,200 @@
-<article class="pt-32 pb-24">
-  <div class="max-w-4xl mx-auto px-6">
+<main id="main-content">
+  <article class="case wrap" data-c="pink" aria-labelledby="case-h">
     <a
-      href="/"
+      class="back"
+      href="/#projetos"
+      onclick="
+        navigateTo('projetos');
+        return false;
+      "
       title="Voltar para projetos"
-      class="text-zinc-500 hover:text-black mb-12 flex items-center gap-2 transition-colors"
     >
-      <svg
-        width="20"
-        height="20"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path d="m15 18-6-6 6-6"></path>
-      </svg>
-      <span data-i18n="btn-back">Voltar para o início</span>
+      <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+      <span data-i18n="btn-back"></span>
     </a>
 
-    <header class="mb-16">
-      <span
-        class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-4 block"
-        data-i18n="case3-tag"
-      ></span>
-      <h1
-        class="text-4xl md:text-5xl font-bold mb-8 leading-tight text-zinc-900"
-        data-i18n="case3-title"
-      ></h1>
-
-      <div
-        class="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-zinc-100 text-sm"
-      >
-        <div>
-          <p
-            class="text-zinc-400 uppercase font-bold text-[10px] mb-1"
-            data-i18n="meta-role"
-          ></p>
-          <p class="font-semibold" data-i18n="meta-role-val-1"></p>
-        </div>
-        <div>
-          <p
-            class="text-zinc-400 uppercase font-bold text-[10px] mb-1"
-            data-i18n="meta-year"
-          ></p>
-          <p class="font-semibold" data-i18n="case3-year"></p>
-        </div>
-        <div>
-          <p
-            class="text-zinc-400 uppercase font-bold text-[10px] mb-1"
-            data-i18n="meta-duration"
-          ></p>
-          <p class="font-semibold" data-i18n="case3-duration"></p>
-        </div>
-        <div>
-          <p
-            class="text-zinc-400 uppercase font-bold text-[10px] mb-1"
-            data-i18n="meta-team"
-          ></p>
-          <p class="font-semibold text-zinc-900" data-i18n="case3-team"></p>
-        </div>
-      </div>
+    <header class="case-head">
+      <span class="kicker">
+        <svg aria-hidden="true"><use href="#sh-tri" /></svg>
+        <span data-i18n="case3-tag"></span>
+      </span>
+      <h1 id="case-h" data-i18n="case3-title"></h1>
+      <p class="lead" data-i18n="case3-desc"></p>
     </header>
 
-    <section class="case-text">
-      <h2 data-i18n="case3-overview-title"></h2>
-      <p data-i18n="case3-overview-p1"></p>
-      <p data-i18n="case3-overview-p2"></p>
+    <div class="case-art" aria-hidden="true">
+      <svg viewBox="0 0 400 237" preserveAspectRatio="xMidYMid meet">
+        <g stroke="var(--line)" stroke-width="3" fill="none"><path d="M96 70 200 120M304 70 200 120M200 120V196"/></g>
+        <g stroke="var(--pink)" stroke-width="3" fill="none" stroke-dasharray="3 8" stroke-linecap="round"><path d="M96 70 200 120M304 70 200 120M200 120V196"/></g>
+        <use href="#sh-tri" x="62" y="36" width="68" height="68" color="var(--pink)"/>
+        <rect x="272" y="40" width="58" height="58" rx="8" fill="var(--violet)" transform="rotate(8 301 69)"/>
+        <circle cx="200" cy="196" r="28" fill="var(--mint)"/>
+        <use href="#sh-flower" x="166" y="86" width="68" height="68" color="var(--fg)" class="spin"/>
+        <circle cx="200" cy="120" r="9" fill="var(--surface-2)"/>
+        <use href="#sh-moon" x="350" y="170" width="26" height="26" color="var(--orange)"/>
+      </svg>
+    </div>
 
-      <h3 data-i18n="case3-overview-role-title"></h3>
-      <p data-i18n="case3-overview-role-p1"></p>
-      <ul>
-        <li data-i18n="case3-overview-role-l1"></li>
-        <li data-i18n="case3-overview-role-l2"></li>
-        <li data-i18n="case3-overview-role-l3"></li>
-      </ul>
-    </section>
+    <div class="case-meta">
+      <div>
+        <small data-i18n="meta-role"></small>
+        <b data-i18n="meta-role-val-1"></b>
+      </div>
+      <div>
+        <small data-i18n="meta-year"></small>
+        <b data-i18n="case3-year"></b>
+      </div>
+      <div>
+        <small data-i18n="meta-duration"></small>
+        <b data-i18n="case3-duration"></b>
+      </div>
+      <div>
+        <small data-i18n="meta-team"></small>
+        <b data-i18n="case3-team"></b>
+      </div>
+    </div>
 
-    <section class="case-text">
-      <h2 data-i18n="case3-problem-title"></h2>
-      <p data-i18n="case3-problem-p1"></p>
-      <ul>
-        <li data-i18n="case3-problem-l1"></li>
-        <li data-i18n="case3-problem-l2"></li>
-        <li data-i18n="case3-problem-l3"></li>
-        <li data-i18n="case3-problem-l4"></li>
-      </ul>
-      <p data-i18n="case3-problem-p2"></p>
-      <p data-i18n="case3-problem-p3"></p>
-      <blockquote data-i18n="case3-problem-quote"></blockquote>
-    </section>
+    <div class="disclaimer" role="note">
+      <svg aria-hidden="true"><use href="#i-info" /></svg>
+      <p><b data-i18n="case3-disclaimer-title"></b> <span data-i18n="case3-disclaimer-full"></span></p>
+    </div>
 
-    <section class="case-text">
-      <h2 data-i18n="case3-research-title"></h2>
+    <div class="case-body">
+      <nav class="toc" aria-labelledby="toc-label">
+        <small id="toc-label" data-i18n="case-toc"></small>
+        <div data-toc></div>
+      </nav>
+      <div class="case-content">
+        <section class="cs">
+          <h2 data-i18n="case3-overview-title"></h2>
+          <p data-i18n="case3-overview-p1"></p>
+          <p data-i18n="case3-overview-p2"></p>
 
-      <h3 data-i18n="case3-research-focus-title"></h3>
-      <p data-i18n="case3-research-focus-p1"></p>
-      <ul>
-        <li data-i18n="case3-research-focus-l1"></li>
-        <li data-i18n="case3-research-focus-l2"></li>
-        <li data-i18n="case3-research-focus-l3"></li>
-      </ul>
+          <h3 data-i18n="case3-overview-role-title"></h3>
+          <p data-i18n="case3-overview-role-p1"></p>
+          <ul>
+            <li data-i18n="case3-overview-role-l1"></li>
+            <li data-i18n="case3-overview-role-l2"></li>
+            <li data-i18n="case3-overview-role-l3"></li>
+          </ul>
+        </section>
 
-      <h3 data-i18n="case3-research-entities-title"></h3>
-      <p data-i18n="case3-research-entities-p1"></p>
-      <p data-i18n="case3-research-entities-p2"></p>
-      <blockquote data-i18n="case3-research-entities-quote"></blockquote>
+        <section class="cs">
+          <h2 data-i18n="case3-problem-title"></h2>
+          <p data-i18n="case3-problem-p1"></p>
+          <ul>
+            <li data-i18n="case3-problem-l1"></li>
+            <li data-i18n="case3-problem-l2"></li>
+            <li data-i18n="case3-problem-l3"></li>
+            <li data-i18n="case3-problem-l4"></li>
+          </ul>
+          <p data-i18n="case3-problem-p2"></p>
+          <p data-i18n="case3-problem-p3"></p>
+          <blockquote data-i18n="case3-problem-quote"></blockquote>
+        </section>
 
-      <h3 data-i18n="case3-research-cases-title"></h3>
-      <p data-i18n="case3-research-cases-p1"></p>
-      <ul>
-        <li data-i18n="case3-research-cases-l1"></li>
-        <li data-i18n="case3-research-cases-l2"></li>
-        <li data-i18n="case3-research-cases-l3"></li>
-        <li data-i18n="case3-research-cases-l4"></li>
-      </ul>
-    </section>
+        <section class="cs">
+          <h2 data-i18n="case3-research-title"></h2>
 
-    <section class="case-text">
-      <h2 data-i18n="case3-decisions-title"></h2>
+          <h3 data-i18n="case3-research-focus-title"></h3>
+          <p data-i18n="case3-research-focus-p1"></p>
+          <ul>
+            <li data-i18n="case3-research-focus-l1"></li>
+            <li data-i18n="case3-research-focus-l2"></li>
+            <li data-i18n="case3-research-focus-l3"></li>
+          </ul>
 
-      <h3 data-i18n="case3-decisions-d1-title"></h3>
-      <p data-i18n="case3-decisions-d1-p1"></p>
-      <ul>
-        <li data-i18n="case3-decisions-d1-l1"></li>
-        <li data-i18n="case3-decisions-d1-l2"></li>
-      </ul>
-      <p data-i18n="case3-decisions-d1-p2"></p>
+          <h3 data-i18n="case3-research-entities-title"></h3>
+          <p data-i18n="case3-research-entities-p1"></p>
+          <p data-i18n="case3-research-entities-p2"></p>
+          <blockquote data-i18n="case3-research-entities-quote"></blockquote>
 
-      <h3 data-i18n="case3-decisions-d2-title"></h3>
-      <p data-i18n="case3-decisions-d2-p1"></p>
-      <ul>
-        <li data-i18n="case3-decisions-d2-l1"></li>
-        <li data-i18n="case3-decisions-d2-l2"></li>
-      </ul>
-      <p data-i18n="case3-decisions-d2-p2"></p>
+          <h3 data-i18n="case3-research-cases-title"></h3>
+          <p data-i18n="case3-research-cases-p1"></p>
+          <ul>
+            <li data-i18n="case3-research-cases-l1"></li>
+            <li data-i18n="case3-research-cases-l2"></li>
+            <li data-i18n="case3-research-cases-l3"></li>
+            <li data-i18n="case3-research-cases-l4"></li>
+          </ul>
+        </section>
 
-      <h3 data-i18n="case3-decisions-d3-title"></h3>
-      <p data-i18n="case3-decisions-d3-p1"></p>
-      <ul>
-        <li data-i18n="case3-decisions-d3-l1"></li>
-        <li data-i18n="case3-decisions-d3-l2"></li>
-        <li data-i18n="case3-decisions-d3-l3"></li>
-      </ul>
-      <p data-i18n="case3-decisions-d3-p2"></p>
-    </section>
+        <section class="cs">
+          <h2 data-i18n="case3-decisions-title"></h2>
 
-    <section class="case-text">
-      <h2 data-i18n="case3-results-title"></h2>
-      <p data-i18n="case3-results-p1"></p>
-      <ul>
-        <li data-i18n="case3-results-l1"></li>
-        <li data-i18n="case3-results-l2"></li>
-        <li data-i18n="case3-results-l3"></li>
-        <li data-i18n="case3-results-l4"></li>
-        <li data-i18n="case3-results-l5"></li>
-      </ul>
-    </section>
+          <h3 data-i18n="case3-decisions-d1-title"></h3>
+          <p data-i18n="case3-decisions-d1-p1"></p>
+          <ul>
+            <li data-i18n="case3-decisions-d1-l1"></li>
+            <li data-i18n="case3-decisions-d1-l2"></li>
+          </ul>
+          <p data-i18n="case3-decisions-d1-p2"></p>
 
-    <section class="case-text">
-      <h2 data-i18n="case3-learnings-title"></h2>
-      <p data-i18n="case3-learnings-p1"></p>
-      <p data-i18n="case3-learnings-p2"></p>
-      <ul>
-        <li data-i18n="case3-learnings-l1"></li>
-        <li data-i18n="case3-learnings-l2"></li>
-        <li data-i18n="case3-learnings-l3"></li>
-      </ul>
-    </section>
+          <h3 data-i18n="case3-decisions-d2-title"></h3>
+          <p data-i18n="case3-decisions-d2-p1"></p>
+          <ul>
+            <li data-i18n="case3-decisions-d2-l1"></li>
+            <li data-i18n="case3-decisions-d2-l2"></li>
+          </ul>
+          <p data-i18n="case3-decisions-d2-p2"></p>
 
-    <section class="bg-zinc-900 text-white p-10 rounded-3xl shadow-xl mt-12">
-      <h2
-        class="text-xl font-bold uppercase tracking-tight text-white mt-0 mb-6"
-        data-i18n="case3-disclaimer-title"
-      ></h2>
-      <p
-        class="text-zinc-300 leading-relaxed italic"
-        data-i18n="case3-disclaimer-full"
-      ></p>
-    </section>
-  </div>
-</article>
+          <h3 data-i18n="case3-decisions-d3-title"></h3>
+          <p data-i18n="case3-decisions-d3-p1"></p>
+          <ul>
+            <li data-i18n="case3-decisions-d3-l1"></li>
+            <li data-i18n="case3-decisions-d3-l2"></li>
+            <li data-i18n="case3-decisions-d3-l3"></li>
+          </ul>
+          <p data-i18n="case3-decisions-d3-p2"></p>
+        </section>
+
+        <section class="cs">
+          <h2 data-i18n="case3-results-title"></h2>
+          <p data-i18n="case3-results-p1"></p>
+          <ul>
+            <li data-i18n="case3-results-l1"></li>
+            <li data-i18n="case3-results-l2"></li>
+            <li data-i18n="case3-results-l3"></li>
+            <li data-i18n="case3-results-l4"></li>
+            <li data-i18n="case3-results-l5"></li>
+          </ul>
+        </section>
+
+        <section class="cs">
+          <h2 data-i18n="case3-learnings-title"></h2>
+          <p data-i18n="case3-learnings-p1"></p>
+          <p data-i18n="case3-learnings-p2"></p>
+          <ul>
+            <li data-i18n="case3-learnings-l1"></li>
+            <li data-i18n="case3-learnings-l2"></li>
+            <li data-i18n="case3-learnings-l3"></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <a
+      class="next"
+      data-nc="orange"
+      href="#case-2"
+      hx-get="components/case-2.html"
+      hx-target="#app"
+      hx-swap="innerHTML"
+      hx-push-url="#case-2"
+    >
+      <div>
+        <small data-i18n="case-next"></small>
+        <b data-i18n="case2-title"></b>
+      </div>
+      <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+    </a>
+
+    <div class="case-cta">
+      <h2 data-i18n="case-cta-title"></h2>
+      <a class="btn primary" href="#contato">
+        <span data-i18n="case-cta-btn"></span>
+        <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+      </a>
+    </div>
+  </article>
+</main>

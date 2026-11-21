@@ -1,97 +1,155 @@
-<section id="projetos" class="max-w-6xl mx-auto px-6 py-32">
-  <div class="mb-24 text-center lg:text-left">
-    <h2
-      class="text-4xl font-bold mb-6 text-zinc-900"
-      data-i18n="projects-title"
-    ></h2>
-    <p class="text-zinc-500 text-lg max-w-2xl" data-i18n="projects-desc"></p>
-  </div>
-
-  <div class="space-y-40">
-    <article class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-      <div class="space-y-6">
-        <span class="text-blue-600 font-bold text-xs uppercase tracking-widest block" data-i18n="case4-tag"></span>
-        <h3 class="text-3xl font-bold leading-tight text-zinc-900" data-i18n="case4-title"></h3>
-        <p class="text-zinc-600 text-lg leading-relaxed" data-i18n="case4-desc"></p>
-        <button title="case-4" hx-get="components/case-4.html" hx-target="#app" hx-swap="innerHTML" hx-push-url="#case-4" class="inline-flex items-center gap-2 bg-zinc-900 text-white px-8 py-4 rounded-full font-bold hover:bg-zinc-800 hover:scale-105 transition-all">
-          <span data-i18n="case4-btn"></span>
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m9 18 6-6-6-6"></path>
+<section class="block" id="projetos" aria-labelledby="work-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">
+        <svg aria-hidden="true"><use href="#sh-tri" /></svg>
+        <span data-i18n="projects-eyebrow"></span>
+      </span>
+      <h2 id="work-h" data-i18n="projects-title"></h2>
+      <p data-i18n="projects-desc"></p>
+    </div>
+    <div class="cards">
+      <article class="card" data-c="mint">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 400 237" preserveAspectRatio="xMidYMid slice">
+            <circle cx="120" cy="118" r="62" fill="none" stroke="var(--mint)" stroke-width="3"/>
+            <path d="M120 56a62 62 0 0 1 0 124z" fill="var(--mint)"/>
+            <path d="M120 56a62 62 0 0 0 0 124z" fill="var(--ink)" opacity=".55"/>
+            <rect x="222" y="62" width="130" height="30" rx="15" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+            <rect x="222" y="104" width="130" height="30" rx="15" fill="var(--mint)"/>
+            <rect x="216" y="98" width="142" height="42" rx="21" fill="none" stroke="var(--fg)" stroke-width="3" stroke-dasharray="7 6"/>
+            <rect x="222" y="146" width="130" height="30" rx="15" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+            <rect x="246" y="192" width="46" height="26" rx="7" fill="var(--surface)" stroke="var(--fg)" stroke-width="2"/>
+            <text x="269" y="210" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13" font-weight="600" fill="var(--fg)">Tab</text>
+            <use href="#sh-flower" x="318" y="190" width="34" height="34" color="var(--orange)" class="spin"/>
+            <use href="#sh-tri" x="28" y="26" width="22" height="22" color="var(--pink)"/>
           </svg>
-        </button>
-      </div>
-      <div class="aspect-[16/10] bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group">
-        <img src="images/case4-menu-navegacao.webp" alt="Novo menu de navegação por categorias, com a barra lateral e o painel de um grupo aberto" width="1600" height="1434" loading="lazy" decoding="async" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
-      </div>
-    </article>
+        </div>
+        <div class="card-body">
+          <span class="kicker" data-i18n="case4-tag"></span>
+          <h3 data-i18n="case4-title"></h3>
+          <p data-i18n="case4-desc"></p>
+          <div class="meta"><span class="chip">WCAG 2.2</span><span class="chip" data-i18n="case4-chip"></span></div>
+          <button
+            type="button"
+            class="more"
+            title="case-4"
+            hx-get="components/case-4.html"
+            hx-target="#app"
+            hx-swap="innerHTML"
+            hx-push-url="#case-4"
+          >
+            <span data-i18n="case4-btn"></span>
+            <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+          </button>
+        </div>
+      </article>
 
-    <article class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-      <div class="space-y-6">
-        <span class="text-blue-600 font-bold text-xs uppercase tracking-widest block" data-i18n="case3-tag"></span>
-        <h3 class="text-3xl font-bold leading-tight text-zinc-900" data-i18n="case3-title"></h3>
-        <p class="text-zinc-600 text-lg leading-relaxed" data-i18n="case3-desc"></p>
-        <button title="case-3" hx-get="components/case-3.html" hx-target="#app" hx-swap="innerHTML" hx-push-url="#case-3" class="inline-flex items-center gap-2 bg-zinc-900 text-white px-8 py-4 rounded-full font-bold hover:bg-zinc-800 hover:scale-105 transition-all">
-          <span data-i18n="case3-btn"></span>
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m9 18 6-6-6-6"></path>
+      <article class="card" data-c="pink">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 400 237" preserveAspectRatio="xMidYMid slice">
+            <g stroke="var(--line)" stroke-width="3" fill="none"><path d="M96 70 200 120M304 70 200 120M200 120V196"/></g>
+            <g stroke="var(--pink)" stroke-width="3" fill="none" stroke-dasharray="3 8" stroke-linecap="round"><path d="M96 70 200 120M304 70 200 120M200 120V196"/></g>
+            <use href="#sh-tri" x="62" y="36" width="68" height="68" color="var(--pink)"/>
+            <rect x="272" y="40" width="58" height="58" rx="8" fill="var(--violet)" transform="rotate(8 301 69)"/>
+            <circle cx="200" cy="196" r="28" fill="var(--mint)"/>
+            <use href="#sh-flower" x="166" y="86" width="68" height="68" color="var(--fg)" class="spin"/>
+            <circle cx="200" cy="120" r="9" fill="var(--surface-2)"/>
+            <use href="#sh-moon" x="350" y="170" width="26" height="26" color="var(--orange)"/>
           </svg>
-        </button>
-      </div>
-      <div class="aspect-[16/10] bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group">
-        <img src="images/case3_cover.png" alt="Ilustração 3D representando entidades, organizações e mensagens conectadas em um sistema digital de saúde" width="1536" height="1024" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-      </div>
-    </article>
+        </div>
+        <div class="card-body">
+          <span class="kicker" data-i18n="case3-tag"></span>
+          <h3 data-i18n="case3-title"></h3>
+          <p data-i18n="case3-desc"></p>
+          <div class="meta"><span class="chip" data-i18n="case3-chip-1"></span><span class="chip" data-i18n="case3-chip-2"></span></div>
+          <button
+            type="button"
+            class="more"
+            title="case-3"
+            hx-get="components/case-3.html"
+            hx-target="#app"
+            hx-swap="innerHTML"
+            hx-push-url="#case-3"
+          >
+            <span data-i18n="case3-btn"></span>
+            <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+          </button>
+        </div>
+      </article>
 
-    <article class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-      <div class="space-y-6">
-        <span class="text-blue-600 font-bold text-xs uppercase tracking-widest block" data-i18n="case2-tag"></span>
-        <h3 class="text-3xl font-bold leading-tight text-zinc-900" data-i18n="case2-title"></h3>
-        <p class="text-zinc-600 text-lg leading-relaxed" data-i18n="case2-desc"></p>
-        <button title="case-2" hx-get="components/case-2.html" hx-target="#app" hx-swap="innerHTML" hx-push-url="#case-2" class="inline-flex items-center gap-2 bg-zinc-900 text-white px-8 py-4 rounded-full font-bold hover:bg-zinc-800 hover:scale-105 transition-all">
-          <span data-i18n="case2-btn"></span>
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m9 18 6-6-6-6"></path>
+      <article class="card" data-c="orange">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 400 237" preserveAspectRatio="xMidYMid slice">
+            <g fill="var(--orange)">
+            <rect x="60" y="170" width="46" height="46" rx="6" opacity=".35"/>
+            <rect x="122" y="170" width="46" height="46" rx="6" opacity=".55"/><rect x="122" y="116" width="46" height="46" rx="6" opacity=".55"/>
+            <rect x="184" y="170" width="46" height="46" rx="6" opacity=".8"/><rect x="184" y="116" width="46" height="46" rx="6" opacity=".8"/><rect x="184" y="62" width="46" height="46" rx="6" opacity=".8"/>
+            <rect x="246" y="170" width="46" height="46" rx="6"/><rect x="246" y="116" width="46" height="46" rx="6"/><rect x="246" y="62" width="46" height="46" rx="6"/>
+            </g>
+            <rect x="246" y="8" width="46" height="46" rx="6" fill="none" stroke="var(--fg)" stroke-width="3" stroke-dasharray="6 6"/>
+            <use href="#sh-flower" x="304" y="14" width="40" height="40" color="var(--mint)" class="spin"/>
+            <use href="#sh-circle" x="318" y="150" width="46" height="46" color="var(--pink)"/>
+            <path d="M52 150 130 96 190 52" fill="none" stroke="var(--fg)" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9"/>
+            <path d="M178 50 194 50 190 66" fill="none" stroke="var(--fg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </button>
-      </div>
-      <div class="aspect-[16/10] bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group">
-        <img src="images/case2-top-band.webp" alt="Interface de edição da Top Band, com as opções de posição, altura e tipo de título da faixa sobre um gráfico de série temporal" width="2000" height="1047" loading="lazy" decoding="async" class="w-full h-full object-cover object-left transition-transform duration-500 group-hover:scale-105" />
-      </div>
-    </article>
+        </div>
+        <div class="card-body">
+          <span class="kicker" data-i18n="case2-tag"></span>
+          <h3 data-i18n="case2-title"></h3>
+          <p data-i18n="case2-desc"></p>
+          <div class="meta"><span class="chip">No-code</span><span class="chip">ROI</span></div>
+          <button
+            type="button"
+            class="more"
+            title="case-2"
+            hx-get="components/case-2.html"
+            hx-target="#app"
+            hx-swap="innerHTML"
+            hx-push-url="#case-2"
+          >
+            <span data-i18n="case2-btn"></span>
+            <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+          </button>
+        </div>
+      </article>
 
-    <article
-      class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center"
-    >
-      <div class="space-y-6">
-        <span
-          class="text-blue-600 font-bold text-xs uppercase tracking-widest block"
-          data-i18n="case1-tag"
-        ></span>
-        <h3
-          class="text-3xl font-bold leading-tight text-zinc-900"
-          data-i18n="case1-title"
-        ></h3>
-        <p
-          class="text-zinc-600 text-lg leading-relaxed"
-          data-i18n="case1-desc"
-        ></p>
-        <button
-          title="case-1"
-          hx-get="components/case-1.html"
-          hx-target="#app"
-          hx-swap="innerHTML"
-          hx-push-url="#case-1"
-          class="inline-flex items-center gap-2 bg-zinc-900 text-white px-8 py-4 rounded-full font-bold hover:bg-zinc-800 hover:scale-105 transition-all"
-        >
-          <span data-i18n="case1-btn"></span>
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m9 18 6-6-6-6"></path>
+      <article class="card" data-c="cyan">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 400 237" preserveAspectRatio="xMidYMid slice">
+            <g fill="var(--cyan)" opacity=".28">
+            <rect x="34" y="150" width="26" height="70" rx="5"/><rect x="72" y="126" width="26" height="94" rx="5"/><rect x="110" y="140" width="26" height="80" rx="5"/><rect x="148" y="104" width="26" height="116" rx="5"/><rect x="186" y="120" width="26" height="100" rx="5"/><rect x="224" y="82" width="26" height="138" rx="5"/>
+            </g>
+            <path d="M47 140 85 112 123 128 161 88 199 106 237 62" fill="none" stroke="var(--cyan)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="237" cy="62" r="34" fill="none" stroke="var(--fg)" stroke-width="3" stroke-dasharray="6 6" class="spin"/>
+            <circle cx="237" cy="62" r="7" fill="var(--cyan)"/>
+            <path d="M262 84 300 130" stroke="var(--fg)" stroke-width="2.5" stroke-dasharray="3 6" stroke-linecap="round"/>
+            <circle cx="320" cy="150" r="62" fill="var(--surface)" stroke="var(--cyan)" stroke-width="3"/>
+            <path d="M276 172 298 150 318 164 338 128 362 142" fill="none" stroke="var(--pink)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <g fill="var(--mint)"><circle cx="298" cy="150" r="4.5"/><circle cx="338" cy="128" r="4.5"/></g>
+            <use href="#sh-moon" x="22" y="26" width="26" height="26" color="var(--orange)"/>
+            <use href="#sh-square" x="320" y="20" width="22" height="22" color="var(--violet)"/>
           </svg>
-        </button>
-      </div>
-      <div class="aspect-[16/10] bg-zinc-100 rounded-3xl overflow-hidden relative shadow-lg group">
-        <img src="images/case1-widget-hibrido.png" alt="Widget híbrido de navegação de dados, com um gráfico de profundidade e tempo e duas faixas de seleção, uma azul na vertical e uma roxa na horizontal" width="1070" height="587" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-      </div>
-    </article>
+        </div>
+        <div class="card-body">
+          <span class="kicker" data-i18n="case1-tag"></span>
+          <h3 data-i18n="case1-title"></h3>
+          <p data-i18n="case1-desc"></p>
+          <div class="meta"><span class="chip">30s → &lt;5s</span><span class="chip" data-i18n="case1-chip"></span></div>
+          <button
+            type="button"
+            class="more"
+            title="case-1"
+            hx-get="components/case-1.html"
+            hx-target="#app"
+            hx-swap="innerHTML"
+            hx-push-url="#case-1"
+          >
+            <span data-i18n="case1-btn"></span>
+            <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+          </button>
+        </div>
+      </article>
+    </div>
   </div>
 </section>

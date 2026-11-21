@@ -1,59 +1,66 @@
 # AGENTS.md — Carmem Ferreira Portfolio
 
 > Machine-readable project rules for LLMs and AI agents.
-> Priority order: WCAG 2.1 > i18n correctness > Tailwind utilities > custom CSS > inline styles.
+> Priority order: WCAG 2.1 > i18n correctness > design tokens in styles.css > everything else.
 
 ---
 
 ## STACK
 
 ```
-Tailwind CSS  : CDN (https://cdn.tailwindcss.com) — NO build, NO PostCSS
+CSS           : styles.css (plain CSS, design tokens in :root) — NO Tailwind, NO build, NO PostCSS
 HTMX          : 1.9.12 CDN — partial HTML loading
-Fonts         : Google Fonts — Inter (300/400/500/600/700)
+Fonts         : Google Fonts — Outfit (300/400/500/600/700)
 JS            : Vanilla ES6 — no frameworks
 i18n          : translations.json + data-i18n attributes + runtime JS injection
 Persistence   : localStorage (language), sessionStorage (scroll-after-reload)
 ```
 
+Design: dark violet-charcoal theme + geometric shape vocabulary (circle, square, triangle, flower, moon). Each case has a color (`data-c="mint|pink|orange|cyan"`).
+
 ---
 
 ## CRITICAL CONSTRAINTS
 
-1. **NEVER use `@apply`** — Tailwind CDN does not process PostCSS directives at runtime. `@apply` silently produces no CSS.
-2. **NEVER add `style="..."` inline attributes** — use Tailwind utility classes in `class=""` instead.
-3. **Arbitrary Tailwind values are allowed**: `h-[38px]`, `max-w-[120px]`, `tracking-[0.3em]`, etc.
-4. **Descendant selectors** (`.case-text h2`, `.case-text p`) require plain CSS in `<style>` — Tailwind utilities cannot target child elements from a parent class.
-5. **CSS custom properties** defined in `:root` are used for brand colors:
-   - `--bg-primary: #ffffff`
-   - `--text-primary: #18181b`
-   - `--accent: #2563eb`
+1. **NEVER use `@apply` or Tailwind classes** — Tailwind was removed. All styling lives in `styles.css`.
+2. **NEVER add `style="..."` inline attributes** — add a class in `styles.css` instead (colors: `.c-mint`, `.c-pink`, `.c-orange`, `.c-cyan`, `.c-violet`; case color via `data-c`; next-case color via `data-nc`).
+3. **Use the design tokens** in `:root` of `styles.css` (`--bg`, `--surface`, `--line`, `--fg`, `--muted`, `--mint`, `--pink`, `--orange`, `--cyan`, `--violet`, `--ink`). Never hardcode new hex colors in markup.
+4. **Shapes and icons** are SVG symbols in the sprite at the top of `index.html` (`#sh-circle`, `#sh-square`, `#sh-tri`, `#sh-moon`, `#sh-flower`, `#i-arrow`, `#i-info`, `#i-download`, `#i-copy`). Use `<svg aria-hidden="true"><use href="#id" /></svg>` and give every svg a size in CSS (an unsized svg renders 300x150).
+5. **Contrast**: every text/background pair must pass 4.5:1. Magenta and deep violet are decorative only, never text.
 
 ---
 
 ## FILE ARCHITECTURE
 
 ```
-index.html              Shell: CDN imports, <style>, JS functions, HTMX loaders
+index.html              Shell: head/SEO, SVG sprite, JS functions, HTMX loaders, lightbox
+styles.css              All CSS: tokens, layout, components, case pages, responsive
 translations.json       All i18n strings keyed by language then key
 components/
-  header.html           Fixed nav — always in DOM, NOT inside #app
-  hero.html             Section id="sobre"
-  brands.html           Logo carousel — infinite scroll animation
-  projects.html         Section id="projetos" — case entry buttons
-  case-1.html           Case study page, replaces #app via HTMX
-  case-2.html           Case study page, replaces #app via HTMX
-  case-3.html           Case study page, replaces #app via HTMX
-  case-4.html           Case study page, replaces #app via HTMX
-  footer.html           Section id="contato" — always in DOM, NOT inside #app
+  header.html           Sticky nav + PT/EN switch + mobile hamburger menu — always in DOM, NOT inside #app
+  hero.html             Section id="top"
+  impact.html           Sectors chips + 4 stats
+  projects.html         Section id="projetos" — 4 case cards (order: case-4, case-3, case-2, case-1)
+  about.html            Section id="sobre"
+  case-1.html           Case study page (Data Navigation), replaces #app via HTMX
+  case-2.html           Case study page (No-Code ROI), replaces #app via HTMX
+  case-3.html           Case study page (Systemic UX, healthcare), replaces #app via HTMX
+  case-4.html           Case study page (menu accessibility diagnosis), replaces #app via HTMX
+  footer.html           Section id="contato" (CTA, e-mail, resume) + footer — always in DOM, NOT inside #app
+images/                 avatar.png (hero), avatar-96.png (logo), profile.jpg (about), og-image.jpg (social thumbnail), case images
+files/                  Resume PDFs (pt/eng)
 ```
+
+### Case page template
+
+Each `case-N.html` is a `<main id="main-content">` with: back link, kicker + h1 + lead, `.case-art` (same SVG as the card), `.case-meta` (4 items), `.disclaimer` (aligned to the right via `margin-left:auto`), `.case-body` (sticky `.toc` filled by `buildToc()` from each `section.cs > h2` + `.case-content` sections), `.next` link to the next case (order 4 → 3 → 2 → 1 → 4) and `.case-cta`.
 
 ---
 
 ## DOM LAYOUT (index.html body)
 
 ```html
-<a class="skip-link" href="#main-content">...</a>
+<a class="skip" href="#main-content">...</a>
 <!-- WCAG skip nav -->
 
 <!-- header: always visible, outside #app -->
@@ -63,13 +70,11 @@ components/
   hx-swap="outerHTML"
 ></div>
 
-<!-- #app: replaced by case-1 or case-2 on case load -->
+<!-- #app: replaced by a case page (which brings its own <main id="main-content">) -->
 <div id="app">
   <main id="main-content">
-    <!-- hero loaded here -->
+    <!-- hero, impact, projects and about loaded here -->
   </main>
-  <!-- brands loaded here -->
-  <!-- projects loaded here -->
 </div>
 
 <!-- footer: always visible, outside #app -->
@@ -88,13 +93,13 @@ components/
 
 ### Home view (default)
 
-- All sections scroll in one page: `#sobre` → `#projetos` → `#contato`
+- All sections scroll in one page: `#top` (hero) → `#projetos` → `#sobre` → `#contato`
 - Anchor links work directly via `href="#id"` or `navigateTo('id')`
 
-### Case view (case-1, case-2)
+### Case view (case-1 to case-4)
 
 - Triggered by buttons in `projects.html` with `hx-target="#app" hx-swap="innerHTML"`
-- Replaces entire `#app` content — hero, brands, and projects disappear
+- Replaces entire `#app` content — hero, impact, projects, and about disappear
 - Footer (`#contato`) and header remain visible at all times
 
 ### navigateTo(id) function
@@ -117,10 +122,10 @@ function navigateTo(id) {
 ### Back from case
 
 ```html
-<a href="/" ...>Voltar</a>
+<a href="/#projetos" onclick="navigateTo('projetos'); return false;" ...>Todos os projetos</a>
 ```
 
-- Plain `href="/"` reload — restores full home view cleanly
+- `navigateTo('projetos')` stores the target in `sessionStorage` and reloads home, which then scrolls to the projects section
 
 ---
 
@@ -218,10 +223,10 @@ document.body.addEventListener('htmx:afterOnLoad', () => {
 ### Skip navigation
 
 ```html
-<a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+<a href="#main-content" class="skip">Pular para o conteúdo principal</a>
 ```
 
-CSS: visually hidden by default (`top: -40px`), revealed on `:focus` (`top: 0`).
+CSS (`.skip`): visually hidden by default, revealed on `:focus`.
 
 ### Semantic HTML
 
@@ -244,68 +249,23 @@ CSS: visually hidden by default (`top: -40px`), revealed on `:focus` (`top: 0`).
 
 ### Color contrast
 
-- Body text: `#18181b` on `#ffffff` — passes AA
-- Secondary text: `#52525b` (zinc-600) — passes AA at large sizes
-- Accent: `#2563eb` (blue-600) — use on white backgrounds only
+- Body text `--fg` and secondary `--muted` on `--bg`/`--surface` pass AA; dark text `--ink` on mint buttons
 - Never use color alone to convey information
 
 ### Focus management
 
-- Do not remove outlines. If Tailwind `outline-none` is used, add a custom `focus-visible:ring` replacement
+- Do not remove outlines (global `:focus-visible` ring in `styles.css`)
 - After HTMX content loads into a case page, `window.scrollTo(0,0)` resets viewport
-
-### Animations
-
-- Carousel: `animation-play-state: paused` on hover — respects user preference indirectly
-- For full compliance, consider: `@media (prefers-reduced-motion: reduce) { .carousel-track { animation: none; } }`
+- Lightbox returns focus to the opener on close
 
 ---
 
-## TAILWIND USAGE RULES
+## CSS RULES
 
-### DO
-
-```html
-<!-- Use utility classes directly in markup -->
-<img
-  class="h-7 w-auto max-w-[120px] object-contain grayscale opacity-40
-            transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-105"
-/>
-
-<!-- Arbitrary values are fine -->
-<span class="text-[10px] tracking-[0.3em] h-[38px]"></span>
-
-<!-- Responsive and state variants work -->
-<div class="hidden md:flex text-center md:text-left"></div>
-```
-
-### DO NOT
-
-```css
-/* INVALID in CDN Tailwind */
-.my-class {
-  @apply h-7 w-auto; /* silently fails — produces no CSS */
-}
-```
-
-### When plain CSS is required
-
-Use plain CSS in `<style>` only for:
-
-1. Descendant selectors: `.case-text h2`, `.case-text blockquote`
-2. Keyframe animations: `@keyframes scroll`
-3. Pseudo-class behaviors not achievable with Tailwind variants: `.skip-link:focus`
-4. One-off JavaScript-toggled classes: `.lang-btn-active`
-
-### Active state pattern
-
-```css
-/* In <style> — not @apply */
-.lang-btn-active {
-  background-color: black;
-  color: white !important; /* !important needed to override Tailwind text-zinc-900 */
-}
-```
+- All CSS lives in `styles.css`. Plain CSS, mobile breakpoints at `960px` and `640px`.
+- Do not add `@apply`, Tailwind classes or `style=""`. Add or reuse a class in `styles.css`.
+- Respect `prefers-reduced-motion` (already handled globally at the end of `styles.css`).
+- Visible focus: global `:focus-visible` ring (mint, 3px). Never remove outlines.
 
 ---
 
@@ -314,116 +274,61 @@ Use plain CSS in `<style>` only for:
 ### Nav link (home anchor)
 
 ```html
-<a
-  href="#section-id"
-  onclick="navigateTo('section-id'); return false;"
-  class="hover:text-black transition-colors"
-  data-i18n="nav-key"
-></a>
+<a href="#sobre" onclick="navigateTo('sobre'); return false;" title="Sobre" data-i18n="nav-about"></a>
 ```
 
-### Nav link (external / always present anchor like #contato)
+### Mobile menu (header.html)
+
+`#mobile-menu-toggle` (`.burger`, visible at <= 640px) toggles `#mobile-menu` (`hidden` attribute). `aria-expanded` and `aria-label` are synced by `syncMenuToggle()` using keys `menu-open` / `menu-close`. Esc, outside click, link click and resizing above 640px close it.
+
+### Case open button (projects.html)
 
 ```html
-<a
-  href="#contato"
-  class="hover:text-black transition-colors"
-  data-i18n="nav-contact"
-  title="Contato"
-></a>
-```
-
-### Case open button (in projects.html)
-
-```html
-<button
-  title="case-1"
-  hx-get="components/case-1.html"
-  hx-target="#app"
-  hx-swap="innerHTML"
-  class="inline-flex items-center gap-2 bg-zinc-900 text-white px-7 py-3.5
-         rounded-full font-bold hover:bg-zinc-800 transition-all"
->
+<button type="button" class="more" title="case-1" hx-get="components/case-1.html" hx-target="#app" hx-swap="innerHTML" hx-push-url="#case-1">
   <span data-i18n="case1-btn"></span>
-  <!-- svg arrow icon -->
+  <svg aria-hidden="true"><use href="#i-arrow" /></svg>
 </button>
 ```
 
-### Case back link (in case-\*.html)
+The whole card is clickable (`.more::after` covers the card).
+
+### Case image with lightbox
 
 ```html
-<a
-  href="/"
-  title="Voltar para projetos"
-  class="text-zinc-500 hover:text-black mb-12 flex items-center gap-2 transition-colors"
->
-  <!-- svg left arrow -->
-  <span data-i18n="btn-back"></span>
-</a>
+<figure class="shot">
+  <button type="button" class="zoom" data-lightbox>
+    <img src="images/x.png" alt="" data-i18n-alt="key-alt" width="W" height="H" loading="lazy" decoding="async" />
+    <span class="zi" aria-hidden="true"><!-- zoom svg --></span>
+    <span class="sr-only" data-i18n="lightbox-open"></span>
+  </button>
+  <figcaption data-i18n="key-caption"></figcaption>
+</figure>
 ```
 
-### Logo image (brands.html)
-
-```html
-<img
-  src="images/filename.png"
-  alt="Company Name"
-  class="h-7 w-auto max-w-[120px] object-contain grayscale opacity-40
-         transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-105"
-/>
-```
-
-Height variants: `h-7` (28px default), `h-[38px]` (38px), `h-11` (44px).
+Use `class="shot narrow"` for tall/small screenshots. Metrics use `<div class="res"><div><b>value</b><small>label</small><span>description</span></div></div>`.
 
 ---
 
-## CURRENT TRANSLATIONS KEYS
+## TRANSLATION KEY GROUPS
 
-| Key                                                                                      | Purpose                            |
-| ---------------------------------------------------------------------------------------- | ---------------------------------- |
-| `nav-home`                                                                               | Header: Home                       |
-| `nav-about`                                                                              | Header: About/Sobre                |
-| `nav-projects`                                                                           | Header: Projects/Projetos          |
-| `nav-contact`                                                                            | Header: Contact/Contato            |
-| `hero-tag`                                                                               | Hero eyebrow label                 |
-| `hero-title`                                                                             | Hero H1                            |
-| `hero-desc`                                                                              | Hero paragraph                     |
-| `btn-projects`                                                                           | Hero CTA button                    |
-| `btn-back`                                                                               | Case back link                     |
-| `brands-title`                                                                           | Carousel section heading           |
-| `projects-title`                                                                         | Projects section H2                |
-| `projects-desc`                                                                          | Projects section subtitle          |
-| `case1-tag` / `case2-tag`                                                                | Case eyebrow label                 |
-| `case1-title` / `case2-title`                                                            | Case H1/H3                         |
-| `case1-desc` / `case2-desc`                                                              | Case summary (in projects list)    |
-| `case1-btn` / `case2-btn`                                                                | Case open button text              |
-| `meta-role` / `meta-year` / `meta-duration` / `meta-team` / `meta-status` / `meta-focus` | Case metadata labels               |
-| `meta-role-val-1`                                                                        | Case metadata value: role          |
-| `meta-status-val`                                                                        | Case metadata value: status        |
-| `case1-duration` / `case1-team`                                                          | Case 1 metadata values             |
-| `case-disclaimer`                                                                        | NDA notice shown in cases          |
-| `case-resp-title`                                                                        | "Responsibilities" section heading |
-| `case1-resp-1..5`                                                                        | Case 1 responsibility list items   |
-| `case-overview-title`                                                                    | "Overview" section heading         |
-| `case1-overview`                                                                         | Case 1 overview paragraph          |
-| `case-problem-title`                                                                     | "Problem" section heading          |
-| `case1-quote`                                                                            | Case 1 blockquote                  |
-| `case-results-title`                                                                     | "Results" section heading          |
-| `case1-results`                                                                          | Case 1 results paragraph           |
-| `case2-context-title`                                                                    | Case 2 context H2                  |
-| `case2-problem-title`                                                                    | Case 2 problem H3                  |
-| `case2-problem-desc`                                                                     | Case 2 problem paragraph           |
-| `cta-title`                                                                              | Footer CTA heading                 |
-| `footer-name`                                                                            | Footer designer name               |
-| `footer-copy`                                                                            | Footer copyright text              |
-| `footer-email-link`                                                                      | Footer email link label            |
-| `footer-linkedin`                                                                        | Footer LinkedIn link label         |
+| Prefix / key                                    | Purpose                                             |
+| ----------------------------------------------- | --------------------------------------------------- |
+| `nav-*`, `menu-open`, `menu-close`              | Header and mobile menu                              |
+| `hero-*`, `btn-projects`                        | Hero (title and desc contain HTML: `.hl`, `strong`) |
+| `impact-eyebrow`, `sector-*`, `stat-1..4`       | Impact strip                                        |
+| `projects-*`, `caseN-tag/title/desc/btn/chip*`  | Project cards                                       |
+| `about-*`, `skill-*`, `edu-*`                   | About section                                       |
+| `contact-eyebrow`, `cta-title`, `copy-*`, `footer-*` | Contact and footer                             |
+| `btn-back`, `case-toc`, `case-next`, `case-cta-*`    | Case page chrome                               |
+| `meta-*`, `caseN-year/duration/team/focus`      | Case metadata                                       |
+| `caseN-*`                                       | Case body content, images (`-img-*-alt/caption`), `-disclaimer-*` |
+| `lightbox-open`, `lightbox-close`               | Lightbox labels                                     |
 
 ---
 
 ## CHECKLIST — Before submitting any change
 
-- [ ] No `@apply` in `<style>` blocks
+- [ ] No `@apply` or Tailwind classes
 - [ ] No `style=""` inline attributes
 - [ ] Every `<img>` has a descriptive `alt`
 - [ ] Every interactive empty element has `title` or `data-i18n` that resolves to text
@@ -432,4 +337,5 @@ Height variants: `h-7` (28px default), `h-[38px]` (38px), `h-11` (44px).
 - [ ] Any new HTMX-loaded content will trigger `translatePage()` via `htmx:afterOnLoad`
 - [ ] Sections that must always be visible (header, footer) are NOT inside `#app`
 - [ ] Case content buttons target `#app` with `hx-swap="innerHTML"`
+- [ ] Every svg has a size in CSS; colors come from tokens in `styles.css`
 - [ ] `navigateTo()` used for header nav links that may not exist in case view
