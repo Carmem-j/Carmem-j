@@ -1,71 +1,45 @@
-<section
-  id="sobre"
-  class="relative max-w-6xl mx-auto px-6 pt-28 pb-16 md:py-28"
->
-  <div class="grid md:grid-cols-12 gap-16 items-center">
-    <div class="md:col-span-7">
-      <span
-        class="text-blue-600 font-bold text-xs uppercase tracking-[0.2em] mb-4 block text-center md:text-left"
-        data-i18n="hero-tag"
-      ></span>
-      <h1
-        class="text-4xl md:text-6xl font-bold leading-[1.1] mb-8 text-center md:text-left"
-        data-i18n="hero-title"
-      ></h1>
-      <p
-        class="text-xl text-zinc-500 mb-10 leading-relaxed max-w-2xl text-center md:text-left"
-        data-i18n="hero-desc"
-      ></p>
-
-      <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+<section class="hero" id="top">
+  <div class="confetti" data-confetti="hero" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <h1 data-i18n="hero-title"></h1>
+      <p class="lede" data-i18n="hero-desc"></p>
+      <div class="cta-row">
         <a
+          class="btn primary"
           href="#projetos"
-          class="hero-btn-primary px-8 py-4 rounded-full font-bold transition-all"
-          data-i18n="btn-projects"
-          title="View Projects"
-        ></a>
+          onclick="
+            navigateTo('projetos');
+            return false;
+          "
+          title="Ver projetos"
+        >
+          <span data-i18n="btn-projects"></span>
+          <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+        </a>
         <a
+          class="btn ghost"
           href="#contato"
-          class="hero-btn-secondary px-8 py-4 rounded-full font-medium transition-all"
           data-i18n="nav-contact"
-          title="Contact"
+          title="Contato"
         ></a>
       </div>
     </div>
-    <div class="md:col-span-5">
-      <figure>
-        <div
-          class="aspect-[4/5] bg-zinc-100 rounded-3xl overflow-hidden relative shadow-inner"
-        >
-          <img
-            src="images/profile.jpg"
-            alt="Carmem Ferreira sorrindo, com cabelo cacheado rosa, óculos e jaqueta preta"
-            width="960"
-            height="1153"
-            fetchpriority="high"
-            decoding="async"
-            class="w-full h-full object-cover transition-transform duration-500"
-          />
-        </div>
-      </figure>
+    <div class="portrait">
+      <div class="ring" aria-hidden="true"></div>
+      <img
+        class="av"
+        src="images/avatar.png"
+        alt=""
+        data-i18n-alt="hero-avatar-alt"
+        width="400"
+        height="400"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <span class="badge b1"><i></i><span data-i18n="hero-badge-1"></span></span>
+      <span class="badge b2"><i></i><span>WCAG 2.2</span></span>
+      <span class="badge b3"><i></i><span data-i18n="hero-badge-3"></span></span>
     </div>
   </div>
-
-  <a
-    href="#projetos"
-    aria-label="Rolar para projetos"
-    class="hidden md:flex absolute bottom-2 left-1/2 -translate-x-1/2 text-zinc-300 hover:text-zinc-600 animate-bounce transition-colors"
-  >
-    <svg
-      width="28"
-      height="28"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  </a>
 </section>
