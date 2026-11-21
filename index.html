@@ -125,6 +125,8 @@
         <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
         <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M12 11v5.5M12 7.7v.1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" /></symbol>
         <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+        <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></symbol>
+        <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></symbol>
         <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></symbol>
       </defs>
     </svg>
@@ -191,6 +193,13 @@
       const storedLang = localStorage.getItem('preferredLang');
       let currentLang = storedLang === 'pt' || storedLang === 'en' ? storedLang : 'pt';
 
+      // Preferência do usuário: animação do hero pausada (WCAG 2.2.2)
+      try {
+        if (localStorage.getItem('animPaused') === '1') {
+          document.documentElement.classList.add('anim-paused');
+        }
+      } catch (e) {}
+
       const TOC_ICONS = ['sh-circle', 'sh-square', 'sh-tri', 'sh-flower'];
       const CONFETTI_COLORS = ['#7B3FF2', '#FF5C9D', '#E8A0F0', '#3FE3C2', '#FFA93B', '#52C8F0', '#A58BFF', '#B0448B'];
 
@@ -248,6 +257,7 @@
         });
         document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
         updateDocumentTitle();
+        syncAnimToggle();
         updateResumeLinks();
         buildToc();
         syncMenuToggle();
@@ -261,6 +271,23 @@
         } else if (t('page-title')) {
           document.title = t('page-title');
         }
+      }
+
+      function syncAnimToggle() {
+        const btn = document.getElementById('anim-toggle');
+        if (!btn) return;
+        const paused = document.documentElement.classList.contains('anim-paused');
+        const label = t(paused ? 'anim-resume' : 'anim-pause');
+        if (label) btn.querySelector('.lbl').textContent = label;
+        btn.querySelector('use').setAttribute('href', paused ? '#i-play' : '#i-pause');
+      }
+
+      function toggleAnimation() {
+        const paused = document.documentElement.classList.toggle('anim-paused');
+        try {
+          localStorage.setItem('animPaused', paused ? '1' : '0');
+        } catch (e) {}
+        syncAnimToggle();
       }
 
       // Respeita prefers-reduced-motion também na rolagem feita por JS

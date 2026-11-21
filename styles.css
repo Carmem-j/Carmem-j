@@ -411,7 +411,7 @@ nav.main a:hover {
   max-width: 58ch;
   color: var(--muted);
   font-size: clamp(17px, 1.6vw, 20px);
-  font-weight: 300;
+  font-weight: 400;
 }
 .lede strong {
   color: var(--fg);
@@ -440,6 +440,10 @@ nav.main a:hover {
   inset: -6%;
   border-radius: 50%;
   border: 2px dashed var(--line);
+  animation: spin 60s linear infinite;
+}
+.anim-paused .portrait .ring {
+  animation-play-state: paused;
 }
 .portrait img.av {
   position: relative;
@@ -591,7 +595,7 @@ section.block {
 }
 .sec-head p {
   color: var(--muted);
-  font-weight: 300;
+  font-weight: 400;
   font-size: 19px;
 }
 
@@ -677,7 +681,7 @@ section.block {
 }
 .card p {
   color: var(--muted);
-  font-weight: 300;
+  font-weight: 400;
   font-size: 17px;
 }
 .card .meta {
@@ -809,7 +813,7 @@ section.block {
 .about .txt {
   margin-top: 22px;
   color: var(--muted);
-  font-weight: 300;
+  font-weight: 400;
   display: grid;
   gap: 16px;
   max-width: 60ch;
@@ -858,7 +862,7 @@ section.block {
 .edu span {
   color: var(--muted);
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* ---------- contato ---------- */
@@ -1002,7 +1006,7 @@ footer .row {
 .case-head .lead {
   font-size: clamp(18px, 2vw, 23px);
   color: var(--muted);
-  font-weight: 300;
+  font-weight: 400;
   max-width: 62ch;
   text-wrap: pretty;
 }
@@ -1138,7 +1142,7 @@ footer .row {
 }
 .cs p {
   font-size: clamp(18px, 1.7vw, 21px);
-  font-weight: 300;
+  font-weight: 400;
   color: var(--muted);
   max-width: 62ch;
   text-wrap: pretty;
@@ -1164,7 +1168,7 @@ footer .row {
   position: relative;
   padding-left: 28px;
   font-size: clamp(17px, 1.6vw, 20px);
-  font-weight: 300;
+  font-weight: 400;
   color: var(--muted);
   text-wrap: pretty;
 }
@@ -1277,7 +1281,7 @@ footer .row {
   color: var(--muted);
   font-size: 16px;
   line-height: 1.5;
-  font-weight: 300;
+  font-weight: 400;
 }
 .next {
   --nc: var(--mint);
@@ -1534,5 +1538,44 @@ h1[tabindex='-1']:focus {
   .contact .confetti {
     -webkit-mask-image: radial-gradient(ellipse at center, transparent 62%, #000 100%);
     mask-image: radial-gradient(ellipse at center, transparent 62%, #000 100%);
+  }
+}
+
+/* Botão para pausar a animação do hero (WCAG 2.2.2) */
+.anim-toggle {
+  position: absolute;
+  right: var(--gr);
+  bottom: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--fg);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.anim-toggle:hover {
+  border-color: var(--mint);
+}
+.anim-toggle svg {
+  width: 16px;
+  height: 16px;
+  color: var(--mint);
+}
+@media (max-width: 960px) {
+  .hero {
+    padding-bottom: 84px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .anim-toggle {
+    display: none;
   }
 }

@@ -239,7 +239,7 @@ CSS (`.skip`): visually hidden by default, revealed on `:focus`.
 - All `<a>` links must have accessible text via content, `data-i18n`, or `title` attribute
 - All `<button>` elements must have accessible text via content, `data-i18n`, or `title` attribute
 - `<img>` elements must have descriptive `alt` text — never `alt=""` unless decorative
-- Case images use `<figure>` + `<figcaption data-i18n="...">`. Their alt text is translated via `data-i18n-alt="key"` (handled in `translatePage()`); the markup keeps `alt=""` only as a placeholder that JS fills in, and both `pt` and `en` must define the key. Always set `width`, `height` and `loading="lazy"`.
+- Case images use `<figure>` + `<figcaption data-i18n="...">`. Their alt text is translated via `data-i18n-alt="key"` (handled in `translatePage()`); the markup carries the Portuguese `alt` text directly (so it exists without JS) and JS swaps it for the active language; both `pt` and `en` must define the key. Always set `width`, `height` and `loading="lazy"`.
 - Empty `data-i18n` elements that are links/buttons MUST have a `title` attribute as fallback
 
 ### Language
@@ -250,7 +250,8 @@ CSS (`.skip`): visually hidden by default, revealed on `:focus`.
 - `aria-label` values are translated with `data-i18n-label="key"` (handled in `translatePage()`); never hardcode a single language in `aria-label`, skip link or dialog label
 - `document.title` follows language and case (`updateDocumentTitle()`, key `page-title`)
 - After a case loads via HTMX the focus moves to the case `<h1>` (`tabindex="-1"`); do not let focus fall back to `<body>`
-- JS scrolling must use `scrollBehavior()` (respects `prefers-reduced-motion`); no animation may run longer than 5s without a way to stop it
+- The hero ring animation (60s, infinite) has a visible pause/resume button (`#anim-toggle`, keys `anim-pause`/`anim-resume`, preference in `localStorage` key `animPaused`, class `anim-paused` on `<html>`); any new autoplay animation longer than 5s must be covered by it
+- JS scrolling must use `scrollBehavior()` (respects `prefers-reduced-motion`); 
 - Links with the same visible text (e.g. "Ler case completo") need `aria-describedby` pointing to the card heading; links with `target="_blank"` include a `sr-only` "opens in a new tab" notice (`new-tab` key)
 - Decorative shapes must not sit behind text: confetti is masked away from text on mobile
 
