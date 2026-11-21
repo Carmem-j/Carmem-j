@@ -146,7 +146,7 @@ function navigateTo(id) {
 <element data-i18n="key"></element>
 ```
 
-- Element content is EMPTY in HTML — JS populates it at runtime via `innerHTML`
+- The HTML carries the Portuguese text as default content (filled by `python tools/sync-pt.py` from `translations.json`); JS replaces it at runtime via `innerHTML` for the active language. `translations.json` is the source of truth: never edit the PT text only in the HTML
 - Use `innerHTML` (not `textContent`) to support HTML tags in translation values (blockquotes, `<strong>`, etc.)
 
 ### JS runtime
@@ -174,7 +174,7 @@ function translatePage() {
 
 1. Add to BOTH `pt` and `en` objects in `translations.json`
 2. Add `data-i18n="new-key"` attribute to the HTML element
-3. Leave element content empty: `<span data-i18n="new-key"></span>`
+3. Leave the element empty and run `python tools/sync-pt.py` to write the PT text into the HTML: `<span data-i18n="new-key"></span>`
 
 ### Re-translation after HTMX load
 
@@ -341,7 +341,7 @@ Use `class="shot narrow"` for tall/small screenshots. Metrics use `<div class="r
 - [ ] Every `<img>` has a descriptive `alt`
 - [ ] Every interactive empty element has `title` or `data-i18n` that resolves to text
 - [ ] New text content has keys in BOTH `pt` and `en` in `translations.json`
-- [ ] New HTML elements with text use `data-i18n` and are empty in markup
+- [ ] New HTML elements with text use `data-i18n`; run `python tools/sync-pt.py` after editing `translations.json` (it also fills `alt`, `aria-label` and the case TOC)
 - [ ] Any new HTMX-loaded content will trigger `translatePage()` via `htmx:afterOnLoad`
 - [ ] Sections that must always be visible (header, footer) are NOT inside `#app`
 - [ ] Case content buttons target `#app` with `hx-swap="innerHTML"`
