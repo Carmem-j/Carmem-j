@@ -146,7 +146,7 @@ function navigateTo(id) {
 <element data-i18n="key"></element>
 ```
 
-- Element content is EMPTY in HTML — JS populates it at runtime via `innerHTML`
+- The HTML carries the Portuguese text as default content (filled by `python tools/sync-pt.py` from `translations.json`); JS replaces it at runtime via `innerHTML` for the active language. `translations.json` is the source of truth: never edit the PT text only in the HTML
 - Use `innerHTML` (not `textContent`) to support HTML tags in translation values (blockquotes, `<strong>`, etc.)
 
 ### JS runtime
@@ -174,7 +174,7 @@ function translatePage() {
 
 1. Add to BOTH `pt` and `en` objects in `translations.json`
 2. Add `data-i18n="new-key"` attribute to the HTML element
-3. Leave element content empty: `<span data-i18n="new-key"></span>`
+3. Leave the element empty and run `python tools/sync-pt.py` to write the PT text into the HTML: `<span data-i18n="new-key"></span>`
 
 ### Re-translation after HTMX load
 
@@ -239,13 +239,21 @@ CSS (`.skip`): visually hidden by default, revealed on `:focus`.
 - All `<a>` links must have accessible text via content, `data-i18n`, or `title` attribute
 - All `<button>` elements must have accessible text via content, `data-i18n`, or `title` attribute
 - `<img>` elements must have descriptive `alt` text — never `alt=""` unless decorative
-- Case images use `<figure>` + `<figcaption data-i18n="...">`. Their alt text is translated via `data-i18n-alt="key"` (handled in `translatePage()`); the markup keeps `alt=""` only as a placeholder that JS fills in, and both `pt` and `en` must define the key. Always set `width`, `height` and `loading="lazy"`.
+- Case images use `<figure>` + `<figcaption data-i18n="...">`. Their alt text is translated via `data-i18n-alt="key"` (handled in `translatePage()`); the markup carries the Portuguese `alt` text directly (so it exists without JS) and JS swaps it for the active language; both `pt` and `en` must define the key. Always set `width`, `height` and `loading="lazy"`.
 - Empty `data-i18n` elements that are links/buttons MUST have a `title` attribute as fallback
 
 ### Language
 
 - `<html lang="...">` must match `currentLang`: `pt-BR` or `en`
 - Updated in `translatePage()` on every language switch
+
+- `aria-label` values are translated with `data-i18n-label="key"` (handled in `translatePage()`); never hardcode a single language in `aria-label`, skip link or dialog label
+- `document.title` follows language and case (`updateDocumentTitle()`, key `page-title`)
+- After a case loads via HTMX the focus moves to the case `<h1>` (`tabindex="-1"`); do not let focus fall back to `<body>`
+- The hero ring animation (60s, infinite) has a visible pause/resume button (`#anim-toggle`, keys `anim-pause`/`anim-resume`, preference in `localStorage` key `animPaused`, class `anim-paused` on `<html>`); any new autoplay animation longer than 5s must be covered by it
+- JS scrolling must use `scrollBehavior()` (respects `prefers-reduced-motion`); 
+- Links with the same visible text (e.g. "Ler case completo") need `aria-describedby` pointing to the card heading; links with `target="_blank"` include a `sr-only` "opens in a new tab" notice (`new-tab` key)
+- Decorative shapes must not sit behind text: confetti is masked away from text on mobile
 
 ### Color contrast
 
@@ -333,7 +341,7 @@ Use `class="shot narrow"` for tall/small screenshots. Metrics use `<div class="r
 - [ ] Every `<img>` has a descriptive `alt`
 - [ ] Every interactive empty element has `title` or `data-i18n` that resolves to text
 - [ ] New text content has keys in BOTH `pt` and `en` in `translations.json`
-- [ ] New HTML elements with text use `data-i18n` and are empty in markup
+- [ ] New HTML elements with text use `data-i18n`; run `python tools/sync-pt.py` after editing `translations.json` (it also fills `alt`, `aria-label` and the case TOC)
 - [ ] Any new HTMX-loaded content will trigger `translatePage()` via `htmx:afterOnLoad`
 - [ ] Sections that must always be visible (header, footer) are NOT inside `#app`
 - [ ] Case content buttons target `#app` with `hx-swap="innerHTML"`

@@ -125,11 +125,13 @@
         <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
         <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M12 11v5.5M12 7.7v.1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" /></symbol>
         <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+        <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></symbol>
+        <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></symbol>
         <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></symbol>
       </defs>
     </svg>
 
-    <a href="#main-content" class="skip">Pular para o conteúdo principal</a>
+    <a href="#main-content" class="skip" data-i18n="skip-link">Pular para o conteúdo principal</a>
 
     <div
       hx-get="components/header.html"
@@ -168,7 +170,7 @@
       hx-swap="outerHTML"
     ></div>
 
-    <dialog id="lightbox" aria-label="Imagem ampliada">
+    <dialog id="lightbox" aria-label="Imagem ampliada" data-i18n-label="lightbox-label">
       <button type="button" id="lightbox-close" class="lb-close">
         <svg
           width="24"
@@ -181,7 +183,7 @@
         >
           <path d="M18 6 6 18M6 6l12 12"></path>
         </svg>
-        <span class="sr-only" data-i18n="lightbox-close"></span>
+        <span class="sr-only" data-i18n="lightbox-close">Fechar visualização ampliada</span>
       </button>
       <img id="lightbox-img" src="" alt="" />
     </dialog>
@@ -190,6 +192,13 @@
       let translations = {};
       const storedLang = localStorage.getItem('preferredLang');
       let currentLang = storedLang === 'pt' || storedLang === 'en' ? storedLang : 'pt';
+
+      // Preferência do usuário: animação do hero pausada (WCAG 2.2.2)
+      try {
+        if (localStorage.getItem('animPaused') === '1') {
+          document.documentElement.classList.add('anim-paused');
+        }
+      } catch (e) {}
 
       const TOC_ICONS = ['sh-circle', 'sh-square', 'sh-tri', 'sh-flower'];
       const CONFETTI_COLORS = ['#7B3FF2', '#FF5C9D', '#E8A0F0', '#3FE3C2', '#FFA93B', '#52C8F0', '#A58BFF', '#B0448B'];
@@ -215,7 +224,7 @@
           sessionStorage.removeItem('scrollAfterLoad');
           setTimeout(() => {
             const el = document.getElementById(scrollTarget);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            if (el) el.scrollIntoView({ behavior: scrollBehavior() });
           }, 400);
         }
       }
@@ -240,10 +249,52 @@
             el.setAttribute('alt', dict[key]);
           }
         });
+        document.querySelectorAll('[data-i18n-label]').forEach((el) => {
+          const key = el.getAttribute('data-i18n-label');
+          if (dict[key]) {
+            el.setAttribute('aria-label', dict[key]);
+          }
+        });
         document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
+        updateDocumentTitle();
+        syncAnimToggle();
         updateResumeLinks();
         buildToc();
         syncMenuToggle();
+      }
+
+      // Título da aba: muda por idioma e por case (WCAG 2.4.2)
+      function updateDocumentTitle() {
+        const caseTitle = document.querySelector('.case-head h1');
+        if (caseTitle && caseTitle.textContent.trim()) {
+          document.title = `${caseTitle.textContent.trim()} | Carmem Ferreira`;
+        } else if (t('page-title')) {
+          document.title = t('page-title');
+        }
+      }
+
+      function syncAnimToggle() {
+        const btn = document.getElementById('anim-toggle');
+        if (!btn) return;
+        const paused = document.documentElement.classList.contains('anim-paused');
+        const label = t(paused ? 'anim-resume' : 'anim-pause');
+        if (label) btn.querySelector('.lbl').textContent = label;
+        btn.querySelector('use').setAttribute('href', paused ? '#i-play' : '#i-pause');
+      }
+
+      function toggleAnimation() {
+        const paused = document.documentElement.classList.toggle('anim-paused');
+        try {
+          localStorage.setItem('animPaused', paused ? '1' : '0');
+        } catch (e) {}
+        syncAnimToggle();
+      }
+
+      // Respeita prefers-reduced-motion também na rolagem feita por JS
+      function scrollBehavior() {
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'auto'
+          : 'smooth';
       }
 
       function updateResumeLinks() {
@@ -273,7 +324,7 @@
       function navigateTo(id) {
         const el = document.getElementById(id);
         if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
+          el.scrollIntoView({ behavior: scrollBehavior() });
         } else {
           sessionStorage.setItem('scrollAfterLoad', id);
           window.location.href = window.location.pathname;
@@ -351,7 +402,7 @@
         if (!link) return;
         event.preventDefault();
         const target = document.getElementById(link.dataset.go);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (target) target.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
       });
 
       /* ---------- confete de formas (determinístico: layout estável) ---------- */
@@ -451,11 +502,23 @@
         }
       });
 
-      document.body.addEventListener('htmx:afterOnLoad', () => {
+      document.body.addEventListener('htmx:afterOnLoad', (event) => {
         translatePage();
         updateLanguageButtons();
         initConfetti();
         window.scrollTo(0, 0);
+
+        // Ao abrir um case, o botão clicado some do DOM: move o foco para o
+        // título do case para que teclado e leitores de tela não se percam.
+        const path =
+          (event.detail && event.detail.pathInfo && event.detail.pathInfo.requestPath) || '';
+        if (path.includes('components/case-')) {
+          const h1 = document.querySelector('.case-head h1');
+          if (h1) {
+            h1.setAttribute('tabindex', '-1');
+            h1.focus({ preventScroll: true });
+          }
+        }
       });
 
       function initLightbox() {
