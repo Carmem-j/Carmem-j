@@ -4,7 +4,9 @@
       class="text-4xl md:text-5xl font-bold mb-8 italic uppercase tracking-wider"
       data-i18n="cta-title"
     ></h2>
-    <div class="flex flex-col md:flex-row items-center justify-center gap-10">
+    <div
+      class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10"
+    >
       <a
         href="mailto:carmemjeovana@gmail.com"
         class="text-lg hover:text-blue-400 transition-all border-b border-white/20 hover:border-blue-400 pb-1"
@@ -18,30 +20,32 @@
         data-i18n="footer-linkedin"
         title="LinkedIn"
       ></a>
-    </div>
-    <div
-      class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
-    >
       <a
-        id="resume-download-docx"
-        href="files/Carmem_Ferreira - Resume_pt.docx"
-        download
-        class="inline-flex items-center gap-2 px-6 py-3 border border-white rounded-full text-sm font-medium uppercase tracking-wider transition-all resume-btn"
-        data-i18n="footer-resume-docx"
-      ></a>
-      <a
-        id="resume-download-pdf"
+        id="resume-download"
         href="files/Carmem_Ferreira - Resume_pt.pdf"
-        download
-        class="inline-flex items-center gap-2 px-6 py-3 border border-white rounded-full text-sm font-medium uppercase tracking-wider transition-all resume-btn"
-        data-i18n="footer-resume-pdf"
-      ></a>
+        download="Carmem Ferreira - CV.pdf"
+        class="inline-flex items-center gap-2 text-lg hover:text-blue-400 transition-all border-b border-white/20 hover:border-blue-400 pb-1 text-zinc-400"
+        title="Resume (PDF)"
+      >
+        <svg
+          width="18"
+          height="18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"></path>
+        </svg>
+        <span data-i18n="footer-resume"></span>
+      </a>
     </div>
   </div>
 </section>
 
 <footer
-  class="bg-zinc-900 text-zinc-600 py-16 px-6 border-t border-zinc-800 text-center md:text-left"
+  class="bg-zinc-900 text-zinc-400 py-16 px-6 border-t border-zinc-800 text-center md:text-left"
 >
   <div
     class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8"
@@ -52,7 +56,7 @@
         data-i18n="footer-name"
       ></p>
       <p
-        class="text-[10px] uppercase opacity-80 font-medium"
+        class="text-[10px] uppercase font-medium"
         data-i18n="footer-copy"
       ></p>
     </div>

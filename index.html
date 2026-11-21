@@ -18,8 +18,9 @@
     <link rel="canonical" href="https://carmem-ferreira.des.br/" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/profile.png" />
-    <link rel="apple-touch-icon" href="images/profile.png" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 
     <!-- Open Graph (LinkedIn, WhatsApp, Facebook) -->
     <meta property="og:type" content="website" />
@@ -34,9 +35,12 @@
     />
     <meta
       property="og:image"
-      content="https://carmem-ferreira.des.br/images/profile_2.jpg"
+      content="https://carmem-ferreira.des.br/images/profile.jpg"
     />
-    <meta property="og:image:alt" content="Foto de Carmem Ferreira" />
+    <meta
+      property="og:image:alt"
+      content="Carmem Ferreira sorrindo, com cabelo cacheado rosa, óculos e jaqueta preta"
+    />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:locale:alternate" content="en_US" />
 
@@ -52,7 +56,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://carmem-ferreira.des.br/images/profile_2.jpg"
+      content="https://carmem-ferreira.des.br/images/profile.jpg"
     />
 
     <!-- JSON-LD structured data -->
@@ -64,7 +68,7 @@
         "jobTitle": "Senior Product Designer",
         "description": "Senior Product Designer especialista em visualização de dados e acessibilidade (WCAG 2.1) para sistemas críticos B2B.",
         "url": "https://carmem-ferreira.des.br/",
-        "image": "https://carmem-ferreira.des.br/images/profile_2.jpg",
+        "image": "https://carmem-ferreira.des.br/images/profile.jpg",
         "email": "carmemjeovana@gmail.com",
         "sameAs": ["https://www.linkedin.com/in/carmem-santos/"],
         "knowsAbout": [
@@ -197,16 +201,6 @@
       /* Language button active state */
       .lang-btn-active {
         color: white !important;
-      }
-
-      /* Botões de download de currículo */
-      .resume-btn {
-        background-color: #18181b;
-        color: #ffffff;
-      }
-      .resume-btn:hover {
-        background-color: #ffffff;
-        color: #18181b;
       }
 
       /* Botões da Hero */
@@ -398,21 +392,18 @@
       }
 
       function updateResumeLinks() {
-        const suffix = currentLang === 'pt' ? 'pt' : 'eng';
-        const docxLink = document.getElementById('resume-download-docx');
-        const pdfLink = document.getElementById('resume-download-pdf');
-        if (docxLink) {
-          docxLink.setAttribute(
-            'href',
-            `files/Carmem_Ferreira - Resume_${suffix}.docx`
-          );
-        }
-        if (pdfLink) {
-          pdfLink.setAttribute(
-            'href',
-            `files/Carmem_Ferreira - Resume_${suffix}.pdf`
-          );
-        }
+        const isPt = currentLang === 'pt';
+        const link = document.getElementById('resume-download');
+        if (!link) return;
+        link.setAttribute(
+          'href',
+          `files/Carmem_Ferreira - Resume_${isPt ? 'pt' : 'eng'}.pdf`
+        );
+        // Nome sugerido ao salvar o arquivo
+        link.setAttribute(
+          'download',
+          isPt ? 'Carmem Ferreira - CV.pdf' : 'Carmem Ferreira - Resume.pdf'
+        );
       }
 
       function updateLanguageButtons() {
